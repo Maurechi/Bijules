@@ -1,0 +1,51 @@
+{% assign base_menu_handle = settings.navigation_menu | default: 'main-menu' %}
+{% assign horizontal_nav_linklist = linklists[base_menu_handle] %}
+{% assign mega_nav_name = settings.navigation_horizontal_mega_nav | downcase %}
+
+{% comment %} NEW MEGA CUSTOM NAV {% endcomment %}
+<div class="navigation_top_mega_mm">
+  <ul class="top-mega-nav-link-list-mm level-0">
+    {% comment %} LEVEL 0 {% endcomment %}
+    {% for link in horizontal_nav_linklist.links %}
+      {% assign index = forloop.index -%}
+      <li class="top-mega-nav-link_mm_li  {% if link.active %}active{% endif %} level-0">
+        <a  class="top-mega-nav-link_mm {% if link.active %}option-active{% endif %} level-0" href="{{ link.url }}"><span>{{ link.title }}</span></a>
+        {% comment %} LEVELS 1 & 2 {% endcomment %}
+        {% case index %}
+          {% when 1 %}
+            {% if settings.navlink1_version == "single" %}
+              {% render 'mega-nav-single-pic',link: link, index: index %}
+            {% else %}
+              {% render 'mega-nav-multi-pic-1',link: link, index: index %}
+            {% endif %}
+          {% when 2 %}
+            {% if settings.navlink2_version == "single" %}
+              {% render 'mega-nav-single-pic',link: link, index: index %}
+            {% else %}
+              {% render 'mega-nav-multi-pic-2',link: link, index: index %}
+            {% endif %}
+          {% when 3 %}
+            {% if settings.navlink3_version == "single" %}
+              {% render 'mega-nav-single-pic',link: link, index: index %}
+            {% else %}
+              {% render 'mega-nav-multi-pic-3',link: link, index: index %}
+            {% endif %}
+          {% when 4 %}
+            {% if settings.navlink4_version == "single" %}
+              {% render 'mega-nav-single-pic',link: link, index: index %}
+            {% else %}
+              {% render 'mega-nav-multi-pic-4',link: link, index: index %}
+            {% endif %}
+          {% when 5 %}
+            {% if settings.navlink5_version == "single" %}
+              {% render 'mega-nav-single-pic',link: link, index: index %}
+            {% else %}
+              {% render 'mega-nav-multi-pic-5',link: link, index: index %}
+            {% endif %}
+
+          
+        {% endcase%}
+      </li>
+    {% endfor %}
+  </ul>
+</div>

@@ -1,0 +1,51 @@
+          <div class="product-item__icons">
+            {% for tag in product.tags %}
+            {% if tag contains '__icon:' %}
+            <span class="product-item__icon">
+              {% assign icon_tag = tag | split: '__icon:' | last %}
+              {% case icon_tag %}
+              {% when 'artist' %}
+              <a data-tooltip="Our Artist Series" >
+                <img loading="lazy"  class="product-detail__icon" src="{{ 'rotholz-artist-series.svg' | asset_url }}" />
+              </a>
+              {% when 'fair-trade' %}
+              <a data-tooltip="Fair" >
+                <img loading="lazy" class="product-detail__icon" src="{{ 'rotholz-fair-trade.svg' | asset_url }}" />
+              </a>
+              {% when 'limited' %}
+              <a data-tooltip="Limited" >
+                <img loading="lazy" class="product-detail__icon" src="{{ 'rotholz-limited.svg' | asset_url }}" />
+              </a>
+              {% when 'europe' %}
+              <a data-tooltip="Made in Europe" >
+                <img loading="lazy" class="product-detail__icon" src="{{ 'rotholz-made-in-europe.svg' | asset_url }}" />
+              </a>
+              {% when 'germany' %}
+              <a data-tooltip="Made in Germany" >
+                <img loading="lazy" class="product-detail__icon" src="{{ 'rotholz-made-in-germany.svg' | asset_url }}" />
+              </a>
+              {% when 'organic-cutton' %}
+              <a data-tooltip="Organic Cotton" >
+                <img loading="lazy" class="product-detail__icon" src="{{ 'rotholz-organic-cotton.svg' | asset_url }}" />
+              </a>
+              {% when 'vegan' %}
+              <a data-tooltip="Vegan" >
+                <img loading="lazy" class="product-detail__icon" src="{{ 'rotholz-vegan.svg' | asset_url }}" />
+              </a>
+              {% when 'water-based-print' %}
+              <a data-tooltip="Water based Print" >
+                <img loading="lazy" class="product-detail__icon" src="{{ 'rotholz-water-based-print.svg' | asset_url }}" />
+              </a>
+              {% when 'wool' %}
+              <a data-tooltip="Wool" >
+                <img loading="lazy" class="product-detail__icon" src="{{ 'rotholz-wool.svg' | asset_url }}" />
+              </a>
+              {% when 'co2-neutral' %}
+              <a data-tooltip="Low CO2 emission" >
+                <img loading="lazy" class="product-detail__icon" src="{{ 'rotholz-co2-neutral.svg' | asset_url }}" />
+              </a>
+              {% endcase %}
+            </span>      
+            {% endif %}
+            {% endfor %}
+          </div>

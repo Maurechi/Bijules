@@ -1,0 +1,20 @@
+<div class="collection__item product-tile tile">
+  <a href="{{ product.url | within: collection }}" class="product-tile__link">
+    {% assign  image_url = product.featured_image | img_url: image_size %}
+            {% assign  image_url_small = product.featured_image | img_url: '60x' %}
+            {% assign  image_url_210 = product.featured_image | img_url: '210x' %}
+            {% assign  image_url_420 = product.featured_image | img_url: '420x' %}
+            {% assign  image_url_730 = product.featured_image | img_url: '730x' %}
+            <img loading="lazy" src="{{ image_url_small }}" data-srcset="{{ image_url_210 }} 210w, {{ image_url_420 }} 420w, {{ image_url_730 }} 730w " data-sizes="auto" class="lazyload" alt="{{ product.featured_image.alt }}" >
+
+    <div class="product-tile__overlay">
+      {% include 'product_meta', show_vendor: section.settings.show_vendor %}
+
+      {% if product.available and show_quick_shop %}
+        <button class="product-tile__quick-shop button button--primary button--large" data-action="open-quick-shop" data-quick-shop-url="{{ product.url | append: '?view=quick_shop' }}">
+          {% include 'icon' with 'cart-empty' %}{{ 'product.labels.quick_shop' | t }}
+        </button>
+      {% endif %}
+    </div>
+  </a>
+</div>

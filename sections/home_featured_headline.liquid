@@ -1,0 +1,308 @@
+{% assign block_width = 'col-xs-12' %}
+{% include 'block__assign_section_width' %} 
+
+{% if section.settings.wrapper == true %}
+<div class="section-wrapper flex-width-{{ section.settings.section-wrapper-size }} clearfix">
+  {% endif %}
+  <div class="{{ section.settings.gutter }}">
+    <div class="{{ block_width }}">
+      <div class="section-wrapper-headline{% if section.settings.clearfix == true %} clearfix{% endif %}{% if section.settings.lesspadding == true %} lesspadding{% endif %}">
+
+        <section 
+                 class="clear index-module section home__featured-headline"
+                 style="
+                        background-color: {{ section.settings.background_color }};
+                        margin-top: {{ section.settings.margin_top }}px;
+                        margin-bottom: {{ section.settings.margin_bottom }}px;
+                        ">
+          <div class="{{ settings.gutter }} {{ settings.container }}">
+            <div class="content-max-width-wrapper">
+              {% if section.settings.title != blank %}
+              {% if section.settings.url != blank %}
+              <a href="{{section.settings.url}}">
+                {% endif %}
+                <h{{ section.settings.header_size }}
+                   class="section__title {% if section.settings.font_size != 14 %}flexible-font-size{% endif %} {{ section.settings.font_size_mobile }}"
+                   style="
+                          color: {{ section.settings.color }};
+                          text-decoration: {% if section.settings.underline == true %} underline {% else %} unset {% endif %};
+                          text-align: {{ section.settings.content_position }};
+                          font-weight: {{ section.settings.font_weight }};
+                          {% if section.settings.font_size != 14 %}font-size: {{section.settings.font_size}}px;{% endif %}
+                          ">
+                  {{ section.settings.title }}
+                </h{{ section.settings.header_size }}>
+                {% if section.settings.url != blank %}
+              </a>
+              {% endif %}
+              {% endif %}
+            </div>
+          </div>
+        </section>
+
+      </div>
+    </div>
+  </div>
+  {% if section.settings.wrapper == true %}
+</div>
+{% endif %}
+
+{% schema %}
+{
+  "name":"Headline",
+  "class":"section__home__headline",
+  "settings":[
+  
+      {
+      "type":"checkbox",
+      "id":"wrapper",
+      "label":"Wrapper",
+      "default":false,
+      "info":"Create a 100% Wrapper"
+      },
+      {
+      "type":"range",
+      "id":"section-wrapper-size",
+      "min":25,
+      "max":100,
+      "step":5,
+      "unit":"%",
+      "label":"Wrapper Size",
+      "default":100
+      },
+      {
+      "type":"select",
+      "id":"width",
+      "label":"Container width",
+      "default":"50%",
+      "options":[
+      {
+      "value":"25%",
+      "label":"25%"
+      },
+      {
+      "value":"33%",
+      "label":"33%"
+      },
+      {
+      "value":"50%",
+      "label":"50%"
+      },
+      {
+      "value":"66%",
+      "label":"66%"
+      },
+      {
+      "value":"75%",
+      "label":"75%"
+      },
+      {
+      "value":"100%",
+      "label":"100%"
+      }
+      ]
+      },
+      {
+      "type": "select",
+      "id": "gutter",
+      "label": "Space between objects",
+      "options": [
+      {
+      "value": "no-padding",
+      "label": "no space"
+      },
+      {
+      "value": "small-padding",
+      "label": "small space"
+      },
+      {
+      "value": "regular-padding",
+      "label": "regular padding"
+      },
+      {
+      "value": "big-padding",
+      "label": "big space"
+      }
+      ],
+      "default": "regular-padding"
+      },
+      {
+      "type":"checkbox",
+      "id":"clearfix",
+      "label":"Clear Wrapper",
+      "default":false,
+      "info":"Adjust size and padding"
+      },
+
+      {
+      "type":"checkbox",
+      "id":"lesspadding",
+      "label":"Weniger Seitenabstand",
+      "default":false,
+      "info":"Weniger Seitenabstand"
+      },
+
+        {
+          "type":"checkbox",
+          "id":"boss",
+          "label":"Big on small screens",
+          "default":true,
+          "info":"Big on small screens"
+        },
+
+    {
+      "type":"richtext",
+      "id":"title",
+      "label":"Headling",
+      "default":"<p>Your title</p>"
+    },
+    {
+      "type":"checkbox",
+      "id":"underline",
+      "label":"Underlined",
+      "default":false
+    },
+    {
+      "type":"url",
+      "id":"url",
+      "label":"Link"
+    },
+    {
+      "label":"Text Size",
+      "type":"range",
+      "id":"font_size",
+      "min":14,
+      "max":80,
+      "step":1,
+      "unit":"px",
+      "default":14
+    },
+    {
+      "type": "select",
+      "id": "font_weight",
+      "label": "Text Weight",
+      "default": "500",
+      "options": [
+        {
+          "value": "300",
+          "label": "300"
+        },
+        {
+          "value": "400",
+          "label": "400"
+        },
+        {
+          "value": "500",
+          "label": "500"
+        },
+        {
+          "value": "600",
+          "label": "600"
+        },
+        {
+          "value": "700",
+          "label": "700"
+        }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "font_size_mobile",
+      "label": "Text Size Mobile",
+      "default": "middle",
+      "options": [
+        {
+          "value": "small",
+          "label": "Small"
+        },
+        {
+          "value": "middle",
+          "label": "Middle"
+        },
+        {
+          "value": "big",
+          "label": "Big"
+        }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "header_size",
+      "label": "Header Size (SEO)",
+      "default": "2",
+      "options": [
+        {
+          "value": "1",
+          "label": "H1"
+        },
+        {
+          "value": "2",
+          "label": "H2"
+        },
+        {
+          "value": "3",
+          "label": "H3"
+        }
+      ]
+    },
+    {
+      "type":"select",
+      "id":"content_position",
+      "label":"Text position",
+      "options":[
+        {
+          "value":"left",
+          "label":"Left"
+        },
+        {
+          "value":"center",
+          "label":"Center"
+        },
+        {
+          "value":"right",
+          "label":"Right"
+        }
+      ],
+      "default":"center"
+    },
+    {
+      "type":"color",
+      "id":"color",
+      "label":"Color",
+      "default":"#000000"
+    },
+    {
+      "type":"color",
+      "id":"background_color",
+      "label":"Background Color",
+      "default":"transparent"
+    },
+    {
+      "label":"Margin Top",
+      "type":"range",
+      "id":"margin_top",
+      "min":0,
+      "max":100,
+      "step":1,
+      "unit":"px",
+      "default":0
+    },
+    {
+      "label":"Margin Bottom",
+      "type":"range",
+      "id":"margin_bottom",
+      "min":-50,
+      "max":50,
+      "step":1,
+      "unit":"px",
+      "default":0
+    }
+  ],
+  "presets":[
+    {
+      "category":"Text",
+      "name":"Headline"
+    }
+  ]
+}
+{% endschema %}

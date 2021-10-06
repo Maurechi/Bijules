@@ -1,0 +1,523 @@
+
+<script>
+  document.addEventListener('DOMContentLoaded', function(){
+    $('.ifp-inner').slick({
+      dots: false,
+      infinite: false,
+      speed: 300,
+      slidesToShow: 4,
+      slidesToScroll: 4,
+      nextArrow: '<button class="slick-next next-arrow icon icon--next"><span class="visuallyhidden">Next slides</span></button>',
+      prevArrow: '<button class="slick-prev prev-arrow icon icon--prev"><span class="visuallyhidden">Previous slides</span></button>',
+      responsive: [
+       
+        {
+          breakpoint: 980,
+          settings: {
+            slidesToShow: 1,
+            slidesToScroll: 1
+          }
+        }
+      ]
+    });
+
+    $('.stl-5-right--slider').slick({
+      dots: false,
+      infinite: false,
+      speed: 300,
+      arrows: false,
+      slidesToShow: 1,
+      slidesToScroll: 1,
+      customPaging : function(slider, i) {
+        return '<span></span>';
+      }
+    });
+    var $scale,$transform,i,e,n,s,a,o,r,l;
+    $('.stl-5-dot').click(function(){
+      var $index = $(this).data('index');
+      $('.stl-5-right--slider').slick('slickGoTo',$index);
+      $('.stl-5-dot').removeClass('stl-5-dot--active');
+      $('.stl-5-item').removeClass('stl-5-item-active');
+      $(`#${$index}5`).addClass('stl-5-item-active');
+      $(this).addClass('stl-5-dot--active');
+      if($(window).width() <= 991){
+        if(!$('.stl-5-wrapper').hasClass('zoomed-in')){
+          $scale = 1+($('.stl-5-left').width()/$(window).width());
+          $('html,body').addClass('no-scroll');
+          $('.stl-5-wrapper').addClass('zoomed-in');
+
+          i = document.querySelector('.stl-5-left');
+          e = document.querySelector('.stl-5-right--inner')
+          n = window.innerWidth / (i.offsetWidth - 2 * parseInt(window.getComputedStyle(i).paddingLeft));
+          s = Math.round(i.offsetHeight * n),
+            a = Math.round(Math.max(s - (window.innerHeight - e.offsetHeight), 0)),
+            o = s - a,
+            r = Math.round(-(i.getBoundingClientRect().top - (s - i.offsetHeight) / 2)),
+            l = Math.round(r - a);
+        }
+        e = document.querySelector('.stl-5-dot.stl-5-dot--active')
+        i = Math.round((e.offsetTop + e.offsetHeight / 2) * n),
+          s = Math.round(i - o / 2),
+          a = Math.min(Math.max(r - s, l), r);
+
+        $('.stl-5-left').css('transform','translateY('+a+'px) scale('+n+')');
+      }
+
+    });
+
+    $('.stl-5-dot').mouseenter(function(){
+      if($(window).width() >= 991){ 
+        var $index = $(this).data('index');
+        $(`#${$index}5`).addClass('stl-5-item-active');
+        $(`#btn-${$index}5`).addClass('stl-5-btn-active');
+      }
+    });
+    $('.stl-5-dot').mouseleave(function(){
+      if($(window).width() >= 991){ 
+        var $index = $(this).data('index');
+        $(`#${$index}5`).removeClass('stl-5-item-active');
+        $(`#btn-${$index}5`).removeClass('stl-5-btn-active');
+      }
+    });
+
+    $('.stl-5-right-header span').click(function(){
+      $('html,body').removeClass('no-scroll');
+      $('.stl-5-wrapper').removeClass('zoomed-in');
+
+      $('.stl-5-left').css('transform','scale(1)');
+
+    });
+    $('.stl-5-right--slider').on('afterChange', function(event, slick, currentSlide, nextSlide){
+      var $index = currentSlide;
+      if(!$('.stl-5-dot[data-index="'+$index+'"]').hasClass('stl-5-dot--active')){
+        $('.stl-5-dot').removeClass('stl-5-dot--active');
+        $('.stl-5-dot[data-index="'+$index+'"]').addClass('stl-5-dot--active').trigger('click');
+      }
+    });
+  });
+</script>
+
+  <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+
+
+<style>
+  a {
+  	outline: none;
+  }
+  
+  .index--shop-the-look {
+    margin: {{ section.settings.section-margin }}px 0;
+  }
+  
+  .stl-5-wrapper {
+    max-width: 880px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;    
+    margin-top: 50px;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .index--shop-the-look .top-title {
+    text-align: center;
+    font-size: 15px;
+    font-weight: normal;
+    margin-bottom: 10px;
+  }
+
+  .index--shop-the-look .subtitle {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 55px;
+  }
+  .stl-5-left {
+    width: 50%;
+  }
+  .stl-5-left {
+    padding: 0 10px;
+    transition: all .3s ease;
+  }
+  .item-info {
+    padding: 0px 10px;
+  }
+  .stl-5-left-image{
+    max-height: 627px;
+  }
+  .stl-5-item {
+    display: flex;
+    align-items: center;
+    padding: 0;
+    border: 1px solid transparent;
+  }
+  .stl-5-item:hover {
+    border: 1px solid black;
+  }
+  .stl-5-item-active {
+    border: 1px solid black;
+  }
+  .stl-5-right {
+    width: 40%;
+    position: relative;
+    text-align: center;
+  }
+  .stl-5-itemlist {
+    width: 45%;
+    position: relative;
+    text-align: center;
+    height: 627px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+  }
+
+  .stl-5-right--inner .stl-5-right--slider {
+    position: static;
+    display: none;
+  }
+  .stl-5-right--inner .stl-5-right--slider.slick-initialized {
+    display: block;
+  }
+  
+  .stl-5-item .title {
+    font-weight: normal;
+    margin: 10px 0;
+    font-size: 15px;
+  }
+
+  .stl-5-item .price {
+    font-weight: lighter;
+    font-size: 15px;
+    color: #6b635b ;
+  }
+  .stl-5-btn {
+    margin: 0 auto;
+    margin-top: 20px;
+    display: inline-block;
+    border: 1px solid black;
+    padding: 0.2rem 2rem;
+}
+  .stl-5-btn-active {
+    color: white !important;
+    background: black;
+  }
+
+  .stl-5-btn:hover {
+    color: white !important;
+    background: black;
+  }
+
+  .stl-5-btn:hover::before {
+    transform-origin: right center;
+    transform: scale(0, 1);
+  }
+  .stl-5-right--inner .slick-dots {
+    bottom: unset;
+    top: calc(100% + 20px);
+    left: 50%;
+    transform: translateX(-50%);
+}
+  .stl-5-right--inner .slick-dots span {
+    width: 10px;
+    height: 10px;
+    border: 2px solid #d9d9d9;
+    display: inline-block;
+    border-radius: 100%;
+    cursor: pointer;
+  }
+
+  .stl-5-right--inner .slick-dots .slick-active span {
+    background: #000;
+    border-color: #000;
+  }
+  @-webkit-keyframes shopTheLookDotKeyframe {
+    0% {
+      transform: scale(1)
+    }
+    50% {
+      transform: scale(1.05)
+    }
+    100% {
+      transform: scale(1)
+    }
+  }
+
+  @keyframes shopTheLookDotKeyframe {
+    0% {
+      transform: scale(1)
+    }
+    50% {
+      transform: scale(1.05)
+    }
+    100% {
+      transform: scale(1)
+    }
+  }
+  .stl-5-left--inner {
+    position: relative;
+  }
+
+  .stl-5-left .stl-5-dot {
+    position: absolute;
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    margin: -8px 0 0 -8px;
+    background: #ffffff;
+    border-radius: 100%;
+    box-shadow: 0 1px 10px rgba(0,0,0,0.25);
+    cursor: pointer;
+    z-index: 1;
+    transform: scale(1);
+    transition: transform 0.25s ease-in-out;
+  }
+  .stl-5-left .stl-5-dot.stl-5-dot--active,.stl-5-left .stl-5-dot:hover  {
+    transform: scale(1.5);
+  }
+  .stl-5-left .stl-5-dot::after {
+    position: absolute;
+    content: '';
+    width: 40px;
+    height: 40px;
+    left: -12px;
+    top: -12px;
+    border-radius: 100%;
+    background: rgba(255,255,255,0.4);
+    -webkit-animation: 1.4s shopTheLookDotKeyframe ease-in-out infinite;
+    animation: 1.4s shopTheLookDotKeyframe ease-in-out infinite;
+  }
+  {% comment %} .stl-5-left-img {
+    height: 525px;
+    width: 525px;
+  } {% endcomment %}
+  .stl-5-img {
+    margin: auto;
+    max-height: 350px;
+    object-fit: contain;
+    width: 202px;
+  }
+  .stl-5-mobile-btns {
+    display: none;
+  }
+  .stl-5-right-header{
+    display: none; 
+  }
+  .no-scroll {
+    overflow: hidden !important;
+  }
+  @media(min-width: 991px){
+    .stl-5-right {
+      display: none;
+    }
+  }
+  @media(max-width: 991px){
+    .stl-5-itemlist {
+      display: none;
+    }
+    .stl-5-right--inner {
+      opacity: 0;
+      visibility: hidden;
+      z-index: -20;
+      transition: opacity .3s ease;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background: #fff;
+      -webkit-transform: translateY(100%);
+      transform: translateY(100%);
+      padding-bottom: 30px;
+    }
+    .stl-5-wrapper.zoomed-in .stl-5-right--inner {
+      opacity: 1;
+      visibility: visible;
+      z-index: 999;
+      -webkit-transform: translateY(0);
+      transform: translateY(0);
+    }
+    .stl-5-wrapper.zoomed-in .stl-5-left {
+      z-index: 999;
+    }
+    .stl-5-left, .stl-5-right {
+      width: 100%;
+      max-width: 500px;
+    }
+    .stl-5-left--inner {
+      transition: transform .4s ease;
+    }
+    
+    .stl-5-mobile-btns {
+      display: block;
+      max-width: 300px;
+      margin: 30px auto;
+    }
+
+    .stl-5-mobile-btns a {
+    }
+    .stl-5-wrapper {
+      padding: 0 20px;
+      justify-content: center;
+    }
+    .stl-5-right-header {
+      border-bottom: 1px solid #eee;
+      position: relative;
+      margin-bottom: 20px;
+      display: block;
+    }
+
+    .stl-5-right-header span svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    .stl-5-right-header .subtitle {
+      font-size: 16px;
+      padding: 15px 0;
+      font-weight: normal;
+      margin: 0;
+    }
+
+    .stl-5-right-header span {
+      position: absolute;
+      left: 15px;
+      top: 50%;
+      margin-top: -8px;
+      cursor: pointer;
+    }
+    .stl-5-item .stl-5-btn {
+      display: none;
+    }
+  }
+  @media(max-width: 767px){
+    .index--shop-the-look .subtitle {
+      font-size: 35px;
+    }
+    .stl-5-right-header .subtitle {
+      font-size: 16px;
+    }
+    
+    .stl-5-img img {
+    	max-height: 200px;
+      object-fit: contain;
+
+    }
+  }
+  .limited-height {
+    max-height: 302px;
+  }
+  
+  .slick-dots {
+    position: absolute;
+    display: flex;
+    -webkit-justify-content: center;
+    -ms-flex-pack: justify;
+        justify-content: center;
+    z-index: 9;
+    list-style-type: none !important;
+}
+  
+  .slick-dots li {
+    margin: 0 !important;
+}
+</style>
+
+<div class="index--shop-the-look">
+  <div class="stl-5-wrapper">
+    <div class="stl-5-left">
+      <div class="stl-5-left--inner">
+        {% if section.settings.image != blank %}
+          {%- liquid 
+            assign image_alt_1 = section.settings.image.alt
+            assign  image_url_small_1 = section.settings.image | img_url: '60x'
+            assign  image_url_210_1 = section.settings.image | img_url: '210x'
+            assign  image_url_420_1 = section.settings.image | img_url: '420x'
+            assign  image_url_730_1 = section.settings.image | img_url: '730x'
+            assign  image_url_1270_1 = section.settings.image | img_url: '1270x'
+            assign  image_url_1650_1 = section.settings.image | img_url: '1650x'
+            assign  image_url_2000_1 = section.settings.image | img_url: '2000x'
+            -%}
+            <img loading="lazy"  src="{{ image_url_small_1 }}"
+              data-srcset="{{ image_url_210_1 }} 210w, {{ image_url_420_1 }} 420w, {{ image_url_730_1 }} 730w  {{ image_url_1270_1 }} 1270w, {{ image_url_1650_1 }} 1650w,  {{ image_url_2000_1 }} 2000w"
+              data-sizes="auto"  alt="{{ image_alt_1 }}"
+              class="lazyload"
+              />
+        {% endif %}
+        {% for block in section.blocks %}
+          {% if block.settings.product != blank %}
+            <span class="stl-5-dot" data-index="{{ forloop.index0 }}" style="top:{{ block.settings.top }}%;left:{{ block.settings.left }}%;"></span>
+          {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+    <div class="stl-5-right">
+      <div class="stl-5-right--inner">
+        <div class="stl-5-right-header">
+          <span>
+            <svg class="Icon Icon--close" role="presentation" viewBox="0 0 16 14">
+              <path d="M15 0L1 14m14 0L1 0" stroke="currentColor" fill="none" fill-rule="evenodd"></path>
+            </svg>
+          </span>
+          {% if section.settings.subtitle != blank %}<h3 class="subtitle">{{ section.settings.subtitle }}</h3>{% endif %}
+        </div>
+        <div class="stl-5-right--slider">
+          {% for block in section.blocks %}
+          {% if block.settings.product != blank %}
+            {%- liquid
+              assign thisProduct = all_products[block.settings.product]
+              assign image_alt = thisProduct.alt
+              assign  image_url_small = thisProduct | img_url: '60x'
+              assign  image_url_210 = thisProduct | img_url: '210x'
+              assign  image_url_420 = thisProduct | img_url: '420x'
+              assign  image_url_730 = thisProduct | img_url: '730x'
+              -%}
+          <div class="stl-5-item">
+            <a class="limited" href="{{ thisProduct.url }}">
+            <div class="stl-5-img">
+              <img loading="lazy"  src="{{ image_url_small }}"
+              data-srcset="{{ image_url_210 }} 210w, {{ image_url_420 }} 420w, {{ image_url_730 }} 730w"
+              data-sizes="auto"  alt="{{ image_alt }}"
+              class="lazyload"
+              />
+            </div>
+            <h4 class="title">{{ thisProduct.title }}</h4>
+            <h5 class="price">{{ thisProduct.price | money }}</h5>
+            </a>
+            <a href="{{ thisProduct.url }}" class="stl-5-btn">{{ section.settings.cta_text }}</a>
+          </div>
+          {% endif %}
+          {% endfor %}
+        </div>
+      </div>
+      <div class="stl-5-mobile-btns">
+        <a href="javascript:void(0);" onclick="$('.stl-5-dot--active').trigger('click')" data-index="{{ forloop.index0 }}" {% if forloop.first %}style="display:block;"{% endif %} class="stl-5-btn">{{ section.settings.cta_text_mobile }}</a>
+      </div>
+    </div>
+    <div class="stl-5-itemlist">
+          {% for block in section.blocks %}
+          {% if block.settings.product != blank %}
+            {%- liquid
+              assign thisProduct = all_products[block.settings.product]
+              assign image_alt = thisProduct.alt
+              assign  image_url_small = thisProduct | img_url: '60x'
+              assign  image_url_210 = thisProduct | img_url: '210x'
+              assign  image_url_420 = thisProduct | img_url: '420x'
+              assign  image_url_730 = thisProduct | img_url: '730x'
+              -%}
+              <div class="stl-5-item" id="{{ forloop.index0 }}5">
+                <a class="limited-height" href="{{ thisProduct.url }}">
+                 <img loading="lazy"  src="{{ image_url_small }}"
+              data-srcset="{{ image_url_210 }} 210w, {{ image_url_420 }} 420w, {{ image_url_730 }} 730w"
+              data-sizes="auto"  alt="{{ image_alt }}"
+              class="stl-5-img lazyload"
+              />
+                </a>
+                <div class="item-info">
+                  <h4 class="title">{{ thisProduct.title }}</h4>
+                  <h5 class="price">{{ thisProduct.price | money }}</h5>
+                  <a href="{{ thisProduct.url }}" id="btn-{{ forloop.index0 }}5" class="stl-5-btn">{{ section.settings.cta_text }}</a>
+                </div>
+              </div>
+            {% endif %}
+          {% endfor %}
+    </div>
+  </div>  
+</div>

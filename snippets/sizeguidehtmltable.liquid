@@ -1,0 +1,49 @@
+<a href="#" id="sizeguide-toggler" class="flip"><span class="switch">Sizeguide</span><svg class="icon icon-dropdown-arrow"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-dropdown-arrow"></use></svg></a>
+
+
+<div id="sizeguide" class="delivery-notice" style="display:none;">
+
+  
+ 
+  {% if product.metafields.custom_fields["sizeguide"] != blank %}
+    {{ product.metafields.custom_fields["sizeguide"] }}
+  <div class="size-guide-warpper">
+    <a class="link" href="#">More Info!</a>
+  </div>
+  {% endif %}
+  
+  
+  
+  {% comment %}
+  {% if product.metafields.custom_fields["sizeguide"] != blank %}
+  {{ product.metafields.custom_fields["sizeguide"] }}
+  {% endif %}
+  {% endcomment %}
+
+
+  {% comment %}<a class="shipping-more-info link" href="#shippingandreturns" rel="modal:open">Info</a>{% endcomment %} <!-- modal link --> 
+
+</div>
+
+
+{%comment%} <!-- modal content --> 
+<div id="#sizeguide-mmodal" class="deliveryguide" style="display:none;">
+
+  <div class="shipping-info-short-headline">
+    {%comment%}<span class="shipping-alert">In der Zeit vom 24.12.2021 bis 3.1.2021 kann sich die Lieferzeit verzögern.
+    Bestellungen in diesem Zeitraum werden spätestens am 3.1.2018 versendet.</span><br>{%endcomment%}
+    Der Versand innerhalb Deutschlands dauert 1 bis 3 Werktage.<br>
+    Der Versand in das EU-Ausland dauert 2 bis 4 Werktage.
+  </div>
+
+  Deutschland: 4,95 € | <b>Versandkostenfrei ab 150€</b>b><br />
+  International: 10 €<br />
+  Artikel können innerhalb von 14 Tagen kostenlos zurückgeschickt werden.<br />
+
+
+
+  {%comment%}{{ pages.shipping-returns.content }}{%endcomment%}
+
+</div>
+
+{%endcomment%}

@@ -1,0 +1,67 @@
+
+{%- style -%}
+.title_wrapper {
+  position: absolute;
+  width: 100%;
+}
+.collection__link{ 
+  overflow: visible !important;
+}
+.section_align {
+  text-align: {{ text_align }}
+}
+@media (min-width: 600px) {
+    .title_wrapper {
+      font-size: {{font_md}}rem
+    }
+  }
+  @media (max-width: 600px) {
+    .title_wrapper {
+      font-size: {{font_sm}}rem
+    }
+  }
+
+{%- endstyle -%}
+
+{%- liquid
+  assign collection = collections[block.settings.collection]
+  assign text = collection.title
+  assign custom_align = block.settings.custom_align
+  assign top = block.settings.text_top
+  assign horizontal_align = block.settings.text_horizontal_align
+  assign color = block.settings.text_color
+
+  if collection.image
+    assign collection_image = collection.image
+  else
+    assign collection_image = collection.products.first.featured_image
+  endif
+
+  
+  assign image_alt = collection_image.alt
+  assign  image_url_small = collection_image | img_url: '60x'
+  assign  image_url_210 = collection_image | img_url: '210x'
+  assign  image_url_420 = collection_image | img_url: '420x'
+  assign  image_url_730 = collection_image | img_url: '730x'
+  assign  image_url_1270 = collection_image | img_url: '1270x'
+  assign  image_url_1650 = collection_image | img_url: '1650x'
+  assign  image_url_2000 = collection_image | img_url: '2000x'
+-%}
+
+
+<div style="position: relative" {{ block.shopify_attributes }}>
+  <a href="{{ collection.url }}">
+   <img loading="lazy"  src="{{ image_url_small }}"
+              data-srcset="{{ image_url_210 }} 210w, {{ image_url_420 }} 420w, {{ image_url_730 }} 730w  {{ image_url_1270 }} 1270w, {{ image_url_1650 }} 1650w,  {{ image_url_2000 }} 2000w,"
+              data-sizes="auto"  alt="{{ image_alt }}"
+              class="lazyload"
+              />
+    {% if block.settings.show_info %}
+      <div class="section_align">
+        <div class="title_wrapper" style="top: {{top}}% ;{% if custom_align %}text-align: {{ horizontal_align }} {% endif %}">
+          <h3 style="color: {{ color }}; padding: {{ pt }}rem {{ px }}rem 0rem {{ px }}rem !important;" >{{ text }}</h3>
+        </div>
+      </div>
+    {% endif %}
+  </a>
+</div>

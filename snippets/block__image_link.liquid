@@ -1,0 +1,361 @@
+{% include 'block__assign-image-size' %}
+
+<div class="row img-link-content-wrapper{% if block.settings.innner_alignment %} align--{{ block.settings.innner_alignment }}{% endif %}"  style="{% if block.settings.background-color %}background-color: {{ block.settings.background-color }}{% endif %}; width:{{ block.settings.inner__width }}%;">
+
+    {% assign block_width = 'col-xs-12' %}
+    {% include 'block__assign-image-size' %}
+    {% include 'block__assign-block-width' %}
+
+    <div class="{{ block_width }}">
+      <div class="section__item__image block__item__image image-teaser__item-inner{% if block.settings.innner_alignment %} align--{{ block.settings.innner_alignment }}{% endif %}{% if block.settings.jsrenderheight-mobile %} jsrenderheight-mobile{% else %} no-mobile-js-height{% endif %}{% if block.settings.jsrenderheight %} renderheight{% else %} noheight{% endif %}{% if block.settings.jsrenderheight == false and block.settings.jsrenderheight-mobile == false %} noheight{% endif %}{% if block.settings.mobile-two == true %} mobile-two{% else %} notmobiletwo{% endif %}{% if block.settings.boss == true %} boss{% else %} notboss{% endif %}"
+           style="{% if block.settings.background-color %}background-color: {{ block.settings.background-color }}{% endif %}; width:{{ block.settings.inner__width }}%; {% if block.settings.margin_left != 0 %}margin-left:{{ block.settings.margin_left }}%;{% endif %} {% if block.settings.margin_top != 0 %}margin-top:{{ block.settings.margin_top }}%;{% endif %} ">
+        <div class="row no-padding">
+
+          {% if block.settings.image-mobile != blank %}
+          <div class="desktop-view-600 one">
+            {% endif %}
+            {% if block.settings.image != blank and block.settings.image-two != blank %}
+            <div class="col-12 col-xsm-6">
+              {% endif %}
+              {% if block.settings.image != blank %}
+              {% if block.settings.teaser_link != blank %}
+              <a href="{{ block.settings.teaser_link }}" class="wrapper-link">
+                {% endif %}
+                {% assign image_alt = block.settings.image.alt %}
+                {% assign  image_url = block.settings.image | img_url: image_size %}
+                {% assign  image_url_small = block.settings.image | img_url: '60x' %}
+                {% assign  image_url_210 = block.settings.image | img_url: '210x' %}
+                {% assign  image_url_420 = block.settings.image | img_url: '420x' %}
+                {% assign  image_url_730 = block.settings.image | img_url: '730x' %}
+                {% assign  image_url_1270 = block.settings.image | img_url: '1270x' %}
+                {% assign  image_url_1650 = block.settings.image | img_url: '1650x' %}
+                {% assign  image_url_2000 = block.settings.image | img_url: '2000x' %}
+                <img loading="lazy"  src="{{ image_url_small }}"
+                     data-srcset="{{ image_url_210 }} 210w, {{ image_url_420 }} 420w, {{ image_url_730 }} 730w  {{ image_url_1270 }} 1270w, {{ image_url_1650 }} 1650w,  {{ image_url_2000 }} 2000w,"
+                     data-sizes="load"  alt="{{ image_alt }}"
+                     class="lazyload block_img_link_img {% if block.settings.jsrenderheight %} centered{% endif %}{% if block.settings.jsrenderheight-mobile %} centered-mobile{% endif %}{% if block.settings.jsrenderheight == false and block.settings.jsrenderheight-mobile == false %} notcentred{% endif %}"
+                     />
+
+                {% if block.settings.teaser_link != blank %}
+              </a>
+              {% endif %}
+              {% endif %}
+              {% if block.settings.image != blank and block.settings.image-two != blank %}
+              <div class="mobile-view-600 one">
+              {% endif %}
+                <div class="image-text-wrapper eins center{% if block.settings.mobile-text-position == true %} ontop{% endif %}{% if block.settings.image == blank %} single{% endif %}" style="background-color:{{ block.settings.text-background-color }}">   
+                  <div class="image-teaser-text  align--{{ block.settings.link-text-placement }} {{ block.settings.image-text-mobile-font-size }}" style="color:{{ block.settings.text_color }}; font-size:{{ block.settings.image-text-font-size }}px; font-weight:{{ block.settings.font-weight }}">
+                    {% if block.settings.image-teaser-text != empty %}
+                    {% if block.settings.teaser_link != blank %}
+                    <h{{block.settings.header_size}}>
+                      <a href="{{ block.settings.teaser_link }}">
+                        {% endif %}
+                        {{ block.settings.image-teaser-text }}
+                        {% if block.settings.teaser_link != blank %}
+                      </a>
+                    </h{{block.settings.header_size}}>
+                    {% endif %}      
+                    {% endif %}
+                    {% if block.settings.button-position == false %}
+                    {% if block.settings.teaser-image-text != blank or block.settings.teaser-image-text-two != blank %}
+                    <div class="teaser-text inside{% if block.settings.mobile-text-position == true %} ontop{% endif %}">
+                      {%- if block.settings.teaser-image-text != blank  -%}
+                      <div class="teaser-link-wrapper">
+                        {% if block.settings.teaser_link != blank %}
+                        <a class="{{block.settings.link-style}}{% if block.settings.teaser_link != blank and block.settings.teaser_link-two %} cta-double{%endif %}" style="color:{{ block.settings.link-text-color }};{% if block.settings.link-style != 'button--link' %} background-color:{{block.settings.button-color}}{% endif %}" href="{{ block.settings.teaser_link }}" class="wrapper-link">
+                        {% endif %}
+                          <span {% if block.settings.link-text-color != blank %}style="color:{{block.settings.link-text-color}}"{% endif %}>{{ block.settings.teaser-image-text }}</span>
+                        {% if block.settings.teaser_link != blank %}
+                        </a>
+                        {% endif %}
+                      </div>
+                      {%- endif -%}
+                      {%- if block.settings.teaser-image-text-two != blank and block.settings.button-position == false -%}
+                      <div class="teaser-link-wrapper">
+                        {% if block.settings.desktop-one-two-cta == true %}
+                        {% if block.settings.teaser_link-two != blank and block.settings.teaser-image-text-two != blank %}
+                        <a class="{{block.settings.link-style-two}}{% if block.settings.teaser_link != blank and block.settings.teaser_link-two %} cta-double{%endif %}" style="color:{{ block.settings.link-text-color-two }};{% if block.settings.link-style-two != 'button--link' %} background-color:{{block.settings.button-color-two}}{% endif %}" href="{{ block.settings.teaser_link-two }}" class="wrapper-link">
+                          <span {% if block.settings.link-text-color-two != blank %}style="color:{{block.settings.link-text-color-two}}"{% endif %}>{{ block.settings.teaser-image-text-two }}</span>
+                        </a>
+                        {% endif %}
+                        {% endif %}  
+                      </div>
+                      {% endif %}
+                    </div>
+                    {% endif %}
+                    {% endif %}
+                  </div>
+                </div>
+                {% if block.settings.image != blank and block.settings.image-two != blank %}
+              </div>
+              {% endif %}
+              {% if block.settings.image != blank and block.settings.image-two != blank %}
+            </div>
+            {% endif %}
+            {% if block.settings.image-mobile != blank %}
+          </div>
+          {% endif %}
+
+          {% if block.settings.image-two != blank %}
+          {% if block.settings.image-mobile != blank %}
+          <div class="desktop-view-600 two">
+            {% endif %}
+            <div class="col-12 col-xsm-6">
+              {% if block.settings.image-two != blank %}
+              {% if block.settings.teaser_link != blank %}
+              <a href="{{ block.settings.teaser_link-two }}" class="wrapper-link">
+                {% endif %}
+                {% assign image_alt = block.settings.image-two.alt %}
+                {% assign  image_url = block.settings.image-two | img_url: image_size %}
+                {% assign  image_url_small = block.settings.image-two | img_url: '60x' %}
+                {% assign  image_url_210 = block.settings.image-two | img_url: '210x' %}
+                {% assign  image_url_420 = block.settings.image-two | img_url: '420x' %}
+                {% assign  image_url_730 = block.settings.image-two | img_url: '730x' %}
+                {% assign  image_url_1270 = block.settings.image-two | img_url: '1270x' %}
+                {% assign  image_url_1650 = block.settings.image-two | img_url: '1650x' %}
+                {% assign  image_url_2000 = block.settings.image-two | img_url: '2000x' %}
+                <img loading="lazy"  src="{{ image_url_small }}"
+                     data-srcset="{{ image_url_210 }} 210w, {{ image_url_420 }} 420w, {{ image_url_730 }} 730w  {{ image_url_1270 }} 1270w, {{ image_url_1650 }} 1650w,  {{ image_url_2000 }} 2000w,"
+                     data-sizes="auto"  alt="{{ image_alt }}"
+                     class="lazyload block_img_link_img {% if block.settings.jsrenderheight %} centered{% endif %}{% if block.settings.jsrenderheight-mobile %} centered-mobile{% endif %}{% if block.settings.jsrenderheight == false and block.settings.jsrenderheight-mobile == false %} notcentred{% endif %}"
+                     />
+                {% if block.settings.teaser_link != blank %}
+              </a>
+              {% endif %}
+              {% endif %}
+
+              {% if block.settings.image != blank and block.settings.image-two != blank and block.settings.button-position == false  %}
+              <div class="mobile-view-600 two">
+                <div class="image-text-wrapper zwei center{% if block.settings.mobile-text-position == true %} ontop{% endif %}{% if block.settings.image == blank %} single{% endif %}" style="background-color:{{ block.settings.text-background-color }}">
+                  <div class="image-teaser-text  align--{{ block.settings.link-text-placement }}  {{ block.settings.image-text-mobile-font-size }}" style="color:{{ block.settings.text_color }}; font-size:{{ block.settings.image-text-font-size }}px; font-weight:{{ block.settings.font-weight }}">
+                    {% if block.settings.teaser_link != blank %}
+                    <h{{block.settings.header_size}}>
+                    <a href="{{ block.settings.teaser_link }}">
+                    {% endif %}
+                    {{ block.settings.image-teaser-text }}
+                    {% if block.settings.teaser_link != blank %}
+                    </a>
+                    </h{{block.settings.header_size}}>
+                    {% endif %}
+                    {% if block.settings.button-position == false %}
+                    {% if block.settings.teaser-image-text != blank or  block.settings.teaser-image-text-two != blank and block.settings.button-position == false%}
+                    <div class="teaser-text inside{% if block.settings.mobile-text-position == true %} ontop{% endif %}">
+                      {%- if block.settings.teaser-image-text-two != blank -%}
+                      <div class="teaser-link-wrapper">
+                        {% if block.settings.teaser_link-two != blank %}
+                        <a class="{{block.settings.link-style-two}}{% if block.settings.teaser_link != blank and block.settings.teaser_link-two %} cta-double{%endif %}" style="color:{{ block.settings.link-text-color-two }};{% if block.settings.link-style-two != 'button--link' %} background-color:{{block.settings.button-color-two}}{% endif %}" href="{{ block.settings.teaser_link-two }}" class="wrapper-link">
+                        {% endif %}
+                        <span {% if block.settings.link-text-color-two != blank %}style="color:{{block.settings.link-text-color-two}}"{% endif %}>{{ block.settings.teaser-image-text-two }}</span>
+                        {% if block.settings.teaser_link-two != blank %}
+                        </a>
+                        {% endif %}
+                      </div>
+                      {%- endif -%}
+                    </div>
+                    {% endif %}
+                    {% endif %}
+                  </div>
+                </div>
+              </div>
+              {% endif %}
+            </div>
+
+            {% if block.settings.image-mobile != blank %}
+          </div>
+          {% endif %}
+          {% endif %}
+
+          {% if block.settings.image != blank and block.settings.image-two != blank %}
+          <div class="desktop-view-600 three">
+
+            {% if block.settings.image-teaser-text != blank %}
+            <div class="image-text-wrapper drei center{% if block.settings.mobile-text-position == true %} ontop{% endif %}{% if block.settings.image == blank %} single{% endif %}" style="background-color:{{ block.settings.text-background-color }}">
+              <div class="image-teaser-text  align--{{ block.settings.link-text-placement }}  {{ block.settings.image-text-mobile-font-size }}" style="color:{{ block.settings.text_color }}; font-size:{{ block.settings.image-text-font-size }}px; font-weight:{{ block.settings.font-weight }}">
+                {% if block.settings.teaser_link != blank %}
+                <h{{block.settings.header_size}}>
+                <a href="{{ block.settings.teaser_link }}">
+                {% endif %}
+                  {{ block.settings.image-teaser-text }}
+                {% if block.settings.teaser_link != blank %}
+                </a>
+                </h{{block.settings.header_size}}>
+                {% endif %}
+                {% if block.settings.button-position == false %}
+                {% if block.settings.teaser-image-text != blank or block.settings.teaser-image-text-two != blank and block.settings.button-position == false%}
+                <div class="teaser-text inside{% if block.settings.mobile-text-position == true %} ontop{% endif %}">
+                  {%- if block.settings.teaser-image-text != blank -%}
+                  <div class="teaser-link-wrapper">
+                    {%- if block.settings.teaser_link != blank -%}
+                    <a class="{{block.settings.link-style}}{% if block.settings.teaser_link != blank and block.settings.teaser_link-two %} cta-double{%endif %}" style="color:{{ block.settings.link-text-color }};{% if block.settings.link-style != 'button--link' %} background-color:{{block.settings.button-color}}{% endif %}" href="{{ block.settings.teaser_link }}" class="wrapper-link">
+                    {%- endif -%}
+                    <span {% if block.settings.link-text-color != blank %}style="color:{{block.settings.link-text-color}}"{% endif %}>{{ block.settings.teaser-image-text }}</span>
+                    {% if block.settings.teaser_link != blank %}
+                    </a>
+                    {%- endif -%}
+                  </div>
+                  {%- endif -%}
+                  {%- if block.settings.teaser-image-text-two != blank and block.settings.button-position == false  -%}
+                  <div class="teaser-link-wrapper">
+                    {% if block.settings.teaser_link-two != blank %}
+                    <a class="{{block.settings.link-style-two}}{% if block.settings.teaser_link != blank and block.settings.teaser_link-two %} cta-double{%endif %}" style="color:{{ block.settings.link-text-color-two }};{% if block.settings.link-style-two != 'button--link' %} background-color:{{block.settings.button-color-two}}{% endif %}" href="{{ block.settings.teaser_link-two }}" class="wrapper-link">
+                    {% endif %}
+                      <span {% if block.settings.link-text-color-two != blank %}style="color:{{block.settings.link-text-color-two}}"{% endif %}>{{ block.settings.teaser-image-text-two }}</span>
+                    {% if block.settings.teaser_link-two != blank %}
+                    </a>
+                    {% endif %}
+                  </div>
+                  {%- endif -%}
+                </div>
+                {% endif %}
+                {% endif %}
+              </div>
+            </div>
+            {% endif %}
+          </div>
+          {% endif %}
+
+          {% if block.settings.image-mobile != blank %}
+          <div class="mobile-view-600 three">
+
+            <div class="col-12">
+              {% if block.settings.image-mobile != blank %}
+              {% if block.settings.teaser_link != blank %}
+              <a href="{{ block.settings.teaser_link }}" class="wrapper-link">
+                {% endif %}
+                {% assign image_alt = block.settings.image-mobile.alt %}
+                {% assign  image_url = block.settings.image-mobile | img_url: image_size %}
+                {% assign  image_url_small = block.settings.image-mobile | img_url: '60x' %}
+                {% assign  image_url_210 = block.settings.image-mobile | img_url: '210x' %}
+                {% assign  image_url_420 = block.settings.image-mobile | img_url: '420x' %}
+                {% assign  image_url_730 = block.settings.image-mobile | img_url: '730x' %}
+                {% assign  image_url_1270 = block.settings.image-mobile | img_url: '1270x' %}
+                {% assign  image_url_1650 = block.settings.image-mobile | img_url: '1650x' %}
+                {% assign  image_url_2000 = block.settings.image-mobile | img_url: '2000x' %}
+                <img loading="lazy"  src="{{ image_url_small }}"
+                     data-srcset="{{ image_url_210 }} 210w, {{ image_url_420 }} 420w, {{ image_url_730 }} 730w  {{ image_url_1270 }} 1270w, {{ image_url_1650 }} 1650w,  {{ image_url_2000 }} 2000w,"
+                     data-sizes="auto"  alt="{{ image_alt }}"
+                     class="lazyload block_img_link_img {% if block.settings.jsrenderheight %} centered{% endif %}{% if block.settings.jsrenderheight-mobile %} centered-mobile{% endif %}{% if block.settings.jsrenderheight == false and block.settings.jsrenderheight-mobile == false %} notcentred{% endif %}"
+                     />
+                {% if block.settings.teaser_link != blank %}
+              </a>
+              {% endif %}
+              {% endif %}
+              {% if block.settings.image != blank and block.settings.image-two != blank %}
+              <div class="mobile-view-600 four">
+                {% endif %}
+                <div class="image-text-wrapper eins center{% if block.settings.mobile-text-position == true %} ontop{% endif %}{% if block.settings.image == blank %} single{% endif %}" style="background-color:{{ block.settings.text-background-color }}">
+                  <div class="image-teaser-text  align--{{ block.settings.link-text-placement }}  {{ block.settings.image-text-mobile-font-size }}" style="color:{{ block.settings.text_color }}; font-size:{{ block.settings.image-text-font-size }}px; font-weight:{{ block.settings.font-weight }}">
+                    {% if block.settings.teaser_link != blank %}
+                    <h{{block.settings.header_size}}>
+                    <a href="{{ block.settings.teaser_link }}">
+                      {% endif %}
+                      {{ block.settings.image-teaser-text }}
+                      {% if block.settings.teaser_link != blank %}
+                    </a>
+                    </h{{block.settings.header_size}}>
+                    {% endif %}
+                    {% if block.settings.button-position == false %}
+                    {% if block.settings.teaser-image-text != blank or block.settings.teaser-image-text-two != blank %}
+                    <div class="teaser-text inside{% if block.settings.mobile-text-position == true %} ontop{% endif %}">
+                      {%- if block.settings.teaser-image-text != blank and block.settings.button-position == false  -%}
+                        {% if block.settings.teaser_link-mobile != blank %}
+                        <div class="teaser-link-wrapper">
+                          <a class="{{block.settings.link-style}}{% if block.settings.teaser_link != blank and block.settings.teaser_link-two %} cta-double{%endif %}" style="color:{{ block.settings.link-text-color }};{% if block.settings.link-style != 'button--link' %} background-color:{{block.settings.button-color}}{% endif %}" href="{{ block.settings.teaser_link-mobile }}" class="wrapper-link">
+                            <span {% if block.settings.link-text-color != blank %}style="color:{{block.settings.link-text-color}}"{% endif %}>{{ block.settings.teaser-image-text-mobile }}</span>         
+                          </a>
+                        </div>
+                        {% else if %}
+                        <div class="teaser-link-wrapper">
+                          <a class="{{ block.settings.link-style }}{% if block.settings.teaser_link != blank and block.settings.teaser_link-two %} cta-double{%endif %}" style="color:{{ block.settings.link-text-color }};{% if block.settings.link-style != 'button--link' %} background-color:{{block.settings.button-color}}{% endif %}" href="{{ block.settings.teaser_link-mobile }}" class="wrapper-link">
+                            <span {% if block.settings.link-text-color != blank %}style="color:{{block.settings.link-text-color}}"{% endif %}>{{ block.settings.teaser-image-text }}</span>         
+                          </a>
+                        </div>
+                        {%- endif -%}
+                        {%- if block.settings.teaser_link-two != blank and block.settings.mobile-one-two-cta == true and block.settings.button-position == false -%}
+                        <div class="teaser-link-wrapper">
+                        <a class="{{block.settings.link-style-two}}{% if block.settings.teaser_link != blank and block.settings.teaser_link-two %} cta-double{%endif %}" style="color:{{ block.settings.link-text-color-two }};{% if block.settings.link-style-two != 'button--link' %} background-color:{{block.settings.button-color-two}}{% endif %}" href="{{ block.settings.teaser_link-two }}" class="wrapper-link">
+                          <span {% if block.settings.link-text-color-two != blank %}style="color:{{block.settings.link-text-color-two}}"{% endif %}>{{ block.settings.teaser-image-text-two }}</span>
+                        </a>
+                        </div>
+                      {%- endif -%}
+                      </div>
+                      {%- endif -%}
+                    </div>
+                    {% endif %}
+                    {% endif %}
+                  </div>
+                </div>
+                {% if block.settings.image != blank and block.settings.image-two != blank %}
+              </div>
+              {% endif %}                    
+            </div>
+          </div>
+          {% endif %}
+          
+          {% comment %} Desktop teaser button placement {% endcomment %}
+          {% if block.settings.button-position == true %}
+          {% if block.settings.teaser-image-text != blank or block.settings.teaser-image-text-two != blank %}
+          <div class="desktop-view-600 teaser-text outside align--{{block.settings.text-alignment}} {% if block.settings.mobile-text-position == true %} ontop{% endif %}">
+            {%- if block.settings.teaser-image-text != blank %}
+            <div class="teaser-link-wrapper">
+              {%- if block.settings.teaser_link != blank -%}
+              <a class="{{block.settings.link-style}}" style="color:{{block.settings.link-text-color}};{% if block.settings.link-style != 'button--link' %} background-color:{{block.settings.button-color}}{% endif %}" href="{{ block.settings.teaser_link }}" class="wrapper-link">
+                {% endif %}
+                <span {% if block.settings.link-text-color != blank %}style="color:{{block.settings.link-text-color}}"{% endif %}>{{ block.settings.teaser-image-text }}</span>
+                {%- if block.settings.teaser_link != blank -%}
+              </a>
+              {%- endif -%}
+            </div>
+            {%- endif -%}
+            {%- if block.settings.teaser-image-text-two != blank -%}
+            <div class="teaser-link-wrapper">
+              {%- if block.settings.teaser_link-two != blank -%}
+              <a class="{{block.settings.link-style-two}}" style="color:{{block.settings.link-text-color-two}};{% if block.settings.link-style-two != 'button--link' %} background-color:{{block.settings.button-color-two}}{% endif %}" href="{{ block.settings.teaser_link-two }}" class="wrapper-link">
+                {%- endif -%}
+                <span {% if block.settings.link-text-color-two != blank %}style="color:{{block.settings.link-text-color-two}}"{% endif %}>{{ block.settings.teaser-image-text-two }}</span>
+                {%- if block.settings.teaser_link-two != blank -%}
+              </a>
+              {%- endif -%}
+            </div>
+            {%- endif -%}
+          </div>
+          {% endif %}
+          {% endif %}
+
+          {% comment %} Mobile teaser button placement {% endcomment %}
+          {% if block.settings.button-position == true %}
+          {% if block.settings.teaser-image-text-mobile != blank or block.settings.teaser-image-text != blank %}
+          <div class="mobile-view-600 teaser-text outside align--{{block.settings.text-alignment}} {% if block.settings.mobile-text-position == true %} ontop{% endif %}">
+            <div class="teaser-link-wrapper">
+              {%- if block.settings.teaser-image-text-mobile != blank  -%}
+                {%- if block.settings.teaser_link-mobile != blank -%}
+                <a class="{{block.settings.link-style}}" style="color:{{block.settings.link-text-color}};{% if block.settings.link-style != 'button--link' %} background-color:{{block.settings.button-color}}{% endif %}" href="{{ block.settings.teaser_link-mobile }}" class="wrapper-link">
+                {% endif %}
+                <span {% if block.settings.link-text-color != blank %}style="color:{{block.settings.link-text-color}}"{% endif %}>{{ block.settings.teaser-image-text-mobile }}</span>
+                {%- if block.settings.teaser_link-mobile != blank -%}
+                </a>
+                {%- endif -%}
+              {%- else if -%}
+                {%- if block.settings.teaser_link != blank -%}
+                <a class="{{block.settings.link-style}}" style="color:{{block.settings.link-text-color}};{% if block.settings.link-style != 'button--link' %} background-color:{{block.settings.button-color}}{% endif %}" href="{{ block.settings.teaser_link }}" class="wrapper-link">
+                {% endif %}
+                <span {% if block.settings.link-text-color != blank %}style="color:{{block.settings.link-text-color}}"{% endif %}>{{ block.settings.teaser-image-text }}</span>
+                {%- if block.settings.teaser_link != blank -%}
+                </a>
+                {%- endif -%}
+              {%- endif -%}
+              {%- if block.settings.teaser_link-two != blank and block.settings.mobile-one-two-cta -%}
+                <div class="teaser-link-wrapper">
+                  <a class="{{block.settings.link-style-two}}{% if block.settings.teaser_link != blank and block.settings.teaser_link-two %} cta-double{%endif %}" style="color:{{ block.settings.link-text-color-two }};{% if block.settings.link-style-two != 'button--link' %} background-color:{{block.settings.button-color-two}}{% endif %}" href="{{ block.settings.teaser_link-two }}" class="wrapper-link">
+                    <span {% if block.settings.link-text-color-two != blank %}style="color:{{block.settings.link-text-color-two}}"{% endif %}>{{ block.settings.teaser-image-text-two }}</span>
+                  </a>
+                </div>
+              {%- endif -%}
+            </div>
+          </div>
+          {% endif %}
+          {% endif %}
+        </div>
+      </div>
+    </div>
+</div>

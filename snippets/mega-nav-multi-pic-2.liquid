@@ -1,0 +1,66 @@
+{% comment %} Mega Nav Containing One Picture Per Sub_Link  {% endcomment %}
+<div class="mega-nav-submenu-wrapper container-fluid" id="mega-menu-oben">
+  <div class="nav-border-top"></div>
+  <div class="mega-nav-catalog-nav-lists-wrapper regular-padding" >
+    {% if horizontal_nav_linklist.handle != '' %} 
+    <ul class="top-mega-nav-link-list-mm-multi level-1 mega-nav-catalog-nav-list dis-flex" id="{{ linklists.oben-nav-one.handle }}">
+      {% comment %} ONLY LEVEL 1 ALLOWED!  {% endcomment %}
+      {% for sub_link in link.links %}  
+      <li class="col-12 col-sm-3 col-md-3">
+        {% comment %} IMAGE {% endcomment %}
+        {% case forloop.index %}
+          {% when 1 %}
+            <div class="top-mega-nav-link_mm_li image__link {% if link.active %}active{% endif %} level-1">
+              <a  class="top-mega-nav-link_mm {% if link.active %}active{% endif %} level-1" href="{{ sub_link.url }}">
+                <div class="menu-image-teaser-link-wrapper">
+                  <img loading="lazy" class="lazyload mega-nav-img" src="{{ settings.navlink2_sub1_image | img_url: '500x' }}"/>
+                </div>
+              </a>
+            </div>
+            {% when 2 %}
+              <div class="top-mega-nav-link_mm_li image__link {% if link.active %}active{% endif %} level-1">
+                <a  class="top-mega-nav-link_mm {% if link.active %}active{% endif %} level-1" href="{{ sub_link.url }}">
+                  <div class="menu-image-teaser-link-wrapper">
+                    <img loading="lazy" class="lazyload mega-nav-img" src="{{ settings.navlink2_sub2_image | img_url: '500x' }}"/>
+                  </div>
+                </a>
+              </div>
+              {% when 3 %}
+                <div class="top-mega-nav-link_mm_li image__link {% if link.active %}active{% endif %} level-1">
+                  <a  class="top-mega-nav-link_mm {% if link.active %}active{% endif %} level-1" href="{{ sub_link.url }}">
+                    <div class="menu-image-teaser-link-wrapper">
+                      <img loading="lazy" class="lazyload mega-nav-img" src="{{ settings.navlink2_sub3_image | img_url: '500x' }}"/>
+                </div>
+              </a>
+            </div>
+            {% when 4 %}
+              <div class="top-mega-nav-link_mm_li image__link {% if link.active %}active{% endif %} level-1">
+                <a  class="top-mega-nav-link_mm {% if link.active %}active{% endif %} level-1" href="{{ sub_link.url }}">
+                  <div class="menu-image-teaser-link-wrapper">
+                    <img loading="lazy" class="lazyload mega-nav-img" src="{{ settings.navlink2_sub4_image | img_url: '500x' }}"/>
+                  </div>
+              </a>
+            </div>
+            {% when 5 %}
+            <div class="top-mega-nav-link_mm_li image__link {% if link.active %}active{% endif %} level-1">
+              <a  class="top-mega-nav-link_mm {% if link.active %}active{% endif %} level-1" href="{{ sub_link.url }}">
+                <div class="menu-image-teaser-link-wrapper">
+                  <img loading="lazy" class="lazyload mega-nav-img" src="{{ settings.navlink2_sub5_image | img_url: '500x' }}"/>
+                </div>
+              </a>
+            </div>
+        {% endcase %}
+        {% comment %} SUB_LINK TEXT {% endcomment %}
+        <div class="top-mega-nav-link_mm_li{% if sub_link.active %} option-active{% endif %}{% if sub_link.object.image %} col-3 col-md-2 nav-image-link{% endif %} level-1  mega-nav-col">
+          <div class="nav-title">
+            <a  class="top-mega-nav-link_mm{% if sub_link.active %} active{% endif %} level-1" href="{{ sub_link.url }}">
+              <span>{{ sub_link.title }}</span>
+            </a>
+          </div>
+        </div>
+      </li>
+      {% endfor %}
+    </ul>
+    {% endif %}
+  </div>
+</div>

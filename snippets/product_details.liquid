@@ -1,0 +1,129 @@
+
+{% case section.settings.showcase_size %}
+{% when 'small' %}
+{% assign product_showcase_grid_class = '2/5--lap-and-up' %}
+{% assign product_info_grid_class = '3/5--lap-and-up' %}
+
+{% when 'normal' %}
+{% assign product_showcase_grid_class = '1/2--lap-and-up' %}
+{% assign product_info_grid_class = '1/2--lap-and-up' %}
+
+{% when 'big' %}
+{% assign product_showcase_grid_class = '3/5--lap-and-up' %}
+{% assign product_info_grid_class = '2/5--lap-and-up' %}
+{% endcase %}
+
+{% if section.settings.showcase_scroll_gallery == true %}
+{% assign product_sticky_class = 'product__gallery-sticky' %}
+{% else %}
+{% assign product_sticky_class = '' %}
+{% endif %}
+
+
+<div class="product__details {{ product_sticky_class }}">
+  <div class="inner">
+
+    <div class="grid">
+      {% include 'product_slideshow' %}
+
+      <div class="product__info grid__cell {{ product_info_grid_class }}  {{ product_sticky_class }}">
+
+        {% include 'product_meta', show_vendor: section.settings.show_vendor, for_mobile: false %}
+
+        {% if product.metafields.custom_fields["produkt_varianten"] != blank %}
+        <section class="product-variants">
+          <div class="custom-field custom-field__product-variants custom-field__type--product-reference">
+            <div class="custom-field--value">
+              {% assign product_refs = product.metafields.custom_fields["produkt_varianten"] | split: "|" %}
+              <div class="container-fluid small-padding">
+                <div class="row">
+                  {% for product_handle in product_refs %}
+                  <div class="col-xs-3 col-xsm-4 col-sm-2">
+                    {% assign ref_product = all_products[product_handle] %}
+                    <a class="custom-field-app-product-variant-link" href ="{{ ref_product.url }}">
+                      <img loading="lazy" src="{{ ref_product.featured_image | img_url: '600x' }}" />
+                      {% comment %}
+                      <div class="custom-field-app-related-product-title">{{ ref_product.title }}</div>
+                      {% endcomment %}
+                    </a>
+                  </div>
+                  {% endfor %}
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        {% endif %}
+
+        {% if section.settings.always_show_description %}
+        <div class="product__description">
+
+          {% if section.settings.form_position == 'before_description' %}
+          {% include 'product_form' %}
+          {% endif %}
+
+          {% render 'product-icons'%}
+
+          <div class="product-description-text">{{ product.description }}</div>
+
+          {% comment %}
+          <div id="delivery" class="delivery-notice">
+            {{ product.metafields.product.delivery-time }}
+          </div>
+          {% endcomment %}
+          
+          {% render 'product-details-tab'%}
+
+          {% render 'sizeguidehtmltable'%}
+
+          {% render 'shipping_cost'%}
+          
+          {% comment %}
+          <div class="tabbed">
+            <input checked="checked" id="tab1" type="radio" name="tabs" />
+            <input id="tab2" type="radio" name="tabs" />
+            <input id="tab3" type="radio" name="tabs" />
+            <input id="tab4" type="radio" name="tabs" />
+
+            <nav>
+              <label for="tab1"><span><h3>Details</h3></span></label>
+              <label for="tab2"><h3>Sizeguide</h3></label>
+              <label for="tab3"><h3>Pflegehinweis</h3></label>
+              <label for="tab4"><h3>Versand & Rückgabe</h3></label>
+            </nav>
+
+            <figure>
+              <div class="tab1">{% render 'product-details-tab'%}</div>
+              <div class="tab2">{% render 'sizeguidehtmltable'%}</div>
+              <div class="tab3">{% render 'shipping_cost'%}</div>
+              <div class="tab4">{% include 'shipping_cost'%}</div>
+            </figure>
+          </div>
+          {% endcomment %}
+          
+        </div>
+        {% endif %}
+
+
+
+        {% if section.settings.form_position == 'after_description' %}
+        {% include 'product_form' %}
+        {% endif %}
+
+
+        {% comment %}
+        <p class="payment-icons-detail-page">
+          <img loading="lazy" class="payment__icon" src="{{ 'logoleiste-neu.png' | asset_url }}" />
+        </p>	
+        {% endcomment %}
+
+        {% comment %}
+        <div class="product__share">
+          {% include 'share_buttons' %}
+        </div>
+        {% endcomment %}
+
+      </div>
+    </div>
+  </div>
+</div>

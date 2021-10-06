@@ -1,0 +1,25 @@
+{
+  "sections": {
+    "collection": {
+      "type": "collection",
+      "settings": {
+        "layout_mode": "modular-grid",
+        "pagination_mode": "infinite_scrolling",
+        "enable_tag_filters": false,
+        "enable_sort_by": false,
+        "enable_type_filters": false,
+        "enable_vendor_filters": false,
+        "show_vendor": false,
+        "show_quick_shop": false,
+        "show_sidebar": false,
+        "sidebar_menu": "",
+        "grid_remove_spacing": false,
+        "grid_items_per_row": "4",
+        "number_of_rows": "2"
+      }
+    }
+  },
+  "order": [
+    "collection"
+  ]
+}

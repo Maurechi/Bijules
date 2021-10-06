@@ -1,0 +1,121 @@
+{%- style -%}
+  .collection__item {
+    margin: 0px !important;
+  }
+
+  .product-info {
+    padding: {{pt}}rem {{px}}rem 0rem {{px}}rem; 
+    margin-top: 0; text-align: {{text_align}};
+    position: absolute;
+    width: 100%;
+  }
+
+  .hover-wrapper {
+  position: relative;
+  }
+  .hover-show {
+    position: absolute;
+    left: 0;
+  }  
+  .hover-hide {
+    position: relative;
+    transition: opacity 1s ease;
+    z-index: 10;
+  }
+  .hover-hide:hover {
+    opacity: 0
+  }
+  .title_wrapper {
+    position: absolute;
+    width: 100%;
+    z-index: 20;
+  }
+  .section_align {
+    text-align: {{ text_align }}
+  }
+  @media (min-width: 600px) {
+    .title_wrapper {
+      font-size: {{font_md}}rem;
+    }
+    .price {
+      font-size: {{font_md | minus: 0.3}}rem;
+    }
+  }
+  @media (max-width: 600px) {
+    .title_wrapper {
+      font-size: {{font_sm}}rem;
+      .price {
+        font-size: {{font_sm | minus: 0.2}}rem;
+      }
+    }
+  }
+
+{%- endstyle -%}
+
+{%- liquid
+
+  assign product = all_products[block.settings.product]
+  assign custom_align = block.settings.custom_align
+  assign top = block.settings.text_top
+  assign horizontal_align = block.settings.text_horizontal_align
+  assign color = block.settings.text_color
+      
+  case blocks_qty
+    when 1
+      assign image_size = '1400x'
+    when 2
+      assign image_size = '680x'
+    when 3
+      assign image_size = '440x'
+    when 4
+      assign image_size = '320x'
+    when 5
+      assign image_size = '320x'
+    when 6
+      assign image_size = '320x'
+  endcase
+
+  assign image_alt = product.featured_image.alt
+  assign  image_url_small = product.featured_image | img_url: '60x'
+  assign  image_url_210 = product.featured_image | img_url: '210x'
+  assign  image_url_420 = product.featured_image | img_url: '420x'
+  assign  image_url_730 = product.featured_image | img_url: '730x'
+  assign  image_url_1270 = product.featured_image | img_url: '1270x'
+  assign  image_url_1650 = product.featured_image | img_url: '1650x'
+  assign  image_url_2000 = product.featured_image | img_url: '2000x'
+
+   assign  image_url_small_2 = product.images[1] | img_url: '60x'
+   assign  image_url_210_2 = product.images[1] | img_url: '210x'
+   assign  image_url_420_2 = product.images[1] | img_url: '420x'
+   assign  image_url_730_2 = product.images[1] | img_url: '730x'
+   assign  image_url_1270_2 = product.images[1] | img_url: '1270x'
+   assign  image_url_1650_2 = product.images[1] | img_url: '1650x'
+   assign  image_url_2000_2 = product.images[1] | img_url: '2000x'
+-%}
+  <a href="{{ product.url | within: collection }}">
+    <div class="hover-wrapper">
+        <img loading="lazy"  src="{{ image_url_small }}"
+              data-srcset="{{ image_url_210 }} 210w, {{ image_url_420 }} 420w, {{ image_url_730 }} 730w  {{ image_url_1270 }} 1270w, {{ image_url_1650 }} 1650w,  {{ image_url_2000 }} 2000w,"
+              data-sizes="auto"  alt="{{ image_alt }}"
+              class="{% if product.images.size >= 2 %}hover-hide {% endif %} lazyload"
+              />
+        {% if product.images.size >= 2 %} 
+          <img loading="lazy"  src="{{ image_url_small_2 }}"
+                data-srcset="{{ image_url_210_2 }} 210w, {{ image_url_420_2 }} 420w, {{ image_url_730_2 }} 730w  {{ image_url_1270_2 }} 1270w, {{ image_url_1650_2 }} 1650w,  {{ image_url_2000_2 }} 2000w,"
+                data-sizes="auto"  alt="{{ image_alt }}"
+                class="hover-show lazyload"
+                />
+        {% endif %}
+        {% if block.settings.show_info %}
+          <div class="section_align">
+            <div class="title_wrapper" style="top: {{ top }}%; {% if custom_align %}text-align: {{ horizontal_align }} ;{% endif %} color: {{ color }}; padding: {{ pt }}rem {{ px }}rem 0rem {{ px }}rem !important;">
+              <p>{{ product.title }}</p>
+              {% unless hide_price %}
+                <p class="price" data-money-convertible>{{ product.first_available_variant.price | money_without_trailing_zeros }}</p>
+              {% endunless %}
+            </div>
+          </div>
+        {% endif %}
+    </div>
+  </a>
+

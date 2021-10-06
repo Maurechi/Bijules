@@ -1,0 +1,25 @@
+{% comment %} NEW COLLECTIONS SIDEBAR {% endcomment %}
+{% assign sidebar_nav_linklist = linklists[sidebar_menu] %}
+  <div class="navigation_sidebar_custom_mm collections-sidebar">
+    <ul class="sidebar-nav-link-list-mm level-0">      
+      {% for link in sidebar_nav_linklist.links %}
+        {% if link.active or template.name == "index" or link.child_active %}
+          <li class="sidbar-nav-link_mm_li {% if link.active or link.child_active %}active{% endif %} level-0">
+            <a  class="sidbar-nav-link_mm {% if link.current %}active{% endif %} level-0" href="{{ link.url }}"><span>{{ link.title }}</span></a>
+            <ul class="sidebar-nav-link-list-mm level-1" id="sidebar-nav-link-list-mm-men">
+              {% for sub_link in link.links %}
+                <li class="sidbar-nav-link_mm_li {% if sub_link.active %}active{% endif %} level-1"><a  class="sidbar-nav-link_mm {% if sub_link.active %}active{% endif %} level-1" href="{{ sub_link.url }}"><span>{{ sub_link.title }}</span></a></li>
+                  <ul class="sidebar-nav-link-list-mm level-1" id="sidebar-nav-link-list-mm-men">
+                    {% if sub_link.active or sub_link.child_active %}
+                      {% for sub_sub_link in sub_link.links %}
+                        <li class="sidbar-nav-link_mm_li {% if sub_sub_link.active %}active{% endif %} level-1 ml-10"><a  class="sidbar-nav-link_mm {% if sub_sub_link.active %}active{% endif %} level-1" href="{{ sub_sub_link.url }}"><span>{{ sub_sub_link.title }}</span></a></li>
+                      {% endfor %}
+                    {% endif %}
+                  </ul>
+              {% endfor %}
+            </ul>
+          </li>
+        {% endif %}
+      {% endfor %}
+    </ul>
+  </div>

@@ -1,0 +1,182 @@
+<div id="{{ section.id }}" class="row">
+  <div 
+    class="col-12 home__button" 
+    style="
+      display:flex;
+      overflow: hidden;
+      justify-content:{{ section.settings.alignment }};
+    ">
+    <a 
+      href="{{ section.settings.button_link }}" 
+      class="button {{ section.settings.font_size_mobile }} {{ section.settings.button_type }} align-{{ section.settings.button-alignment }}"
+      style="
+        color:{{ section.settings.color }};
+        background-color:{{ section.settings.color_background }};
+        font-size:{{ section.settings.font_size }}px;
+        font-weight: {{ section.settings.font_weight }};
+        margin-left: {{ section.settings.margin_left }}%;
+        margin-right: {{ section.settings.margin_right }}%;
+        margin-top: {{ section.settings.margin_top }}%;
+        margin-bottom: {{ section.settings.margin_bottom }}%;
+      ">
+      {{ section.settings.button_label }}
+    </a>
+  </div>
+</div>
+
+{% schema %}
+  {
+    "name": "Button",
+    "class": "button-section",
+    "settings": [
+      {
+        "type": "text",
+        "id": "button_label",
+        "label": "Text",
+        "default" : "Your text"
+      },
+      {
+        "type": "url",
+        "id": "button_link",
+        "label": "Button link"
+      },
+      {
+        "type": "color",
+        "id": "color",
+        "label": "Text Color",
+        "default" : "#FFFFFF"
+      },
+      {
+        "type": "color",
+        "id": "color_background",
+        "label": "Background Color",
+        "default" : "#000000"
+      },
+      {
+        "label":"Text Size",
+        "type":"range",
+        "id":"font_size",
+        "min":14,
+        "max":128,
+        "step":2,
+        "unit":"px",
+        "default":14
+      },
+      {
+        "type": "select",
+        "id": "font_size_mobile",
+        "label": "Text Size Mobile",
+        "default": "middle",
+        "options": [
+          {
+            "value": "small",
+            "label": "Small"
+          },
+          {
+            "value": "middle",
+            "label": "Middle"
+          },
+          {
+            "value": "big",
+            "label": "Big"
+          }
+        ]
+      },
+      {
+        "type": "select",
+        "id": "font_weight",
+        "label": "Text Weight",
+        "default": "500",
+        "options": [
+          {
+            "value": "300",
+            "label": "300"
+          },
+          {
+            "value": "400",
+            "label": "400"
+          },
+          {
+            "value": "500",
+            "label": "500"
+          },
+          {
+            "value": "600",
+            "label": "600"
+          },
+          {
+            "value": "700",
+            "label": "700"
+          }
+        ]
+      },
+      {
+      "type": "select",
+      "id": "alignment",
+      "label": "Placement",
+      "options": [
+        {
+          "value": "flex-start",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "flex-end",
+          "label": "Right"
+        }
+      ],
+        "default": "center"
+      },
+      {
+        "label":"Margin Top",
+        "type":"range",
+        "id":"margin_top",
+        "min":0,
+        "max":100,
+        "step":1,
+        "unit":"%",
+        "default":0
+      },
+      {
+        "label":"Margin Bottom",
+        "type":"range",
+        "id":"margin_bottom",
+        "min":0,
+        "max":100,
+        "step":1,
+        "unit":"%",
+        "default":0
+      },
+      {
+        "label":"Margin Left",
+        "type":"range",
+        "id":"margin_left",
+        "min":0,
+        "max":100,
+        "step":1,
+        "unit":"%",
+        "default":0
+      },
+      {
+        "label":"Margin Right",
+        "type":"range",
+        "id":"margin_right",
+        "min":0,
+        "max":100,
+        "step":1,
+        "unit":"%",
+        "default":0
+      }
+      
+    ],
+    "presets": [
+    {
+      "name": "Button",
+      "category": "HTML"
+    }
+    ]
+  }
+{% endschema %}

@@ -1,0 +1,87 @@
+<div class='home-journal'>
+  <a href='/blogs/journal'>
+    {% assign article_link = false %}
+    {% if article_link == true %}
+    <a href='{{ article.url }}' class='blog--item article-preview'>
+      {% else %}
+      <article class='blog--item article-preview'>
+        {% endif %}
+
+        <div class='article-preview--wrapper clearfix'>
+          <div class='article-preview--title'>
+            <h2>
+              {% if article_link == true %}
+              {{ article.title }}
+              {% else %}
+              {{ section.settings.section_title}}
+              {% endif %}
+            </h2>
+            <div class='article-preview--mobile'>
+              {% if article_link == true %}
+              {{ article.excerpt | strip_html }}
+              <span class='article-preview--rm'>Read More -></span>
+              {% else %}
+              {{ section.settings.section_description | newline_to_br }}
+              {% endif %}
+            </div>
+          </div>
+         
+
+          {% assign  image_url = section.settings.section_image | img_url: image_size %}
+          {% assign  image_url_small = section.settings.section_image | img_url: '60x' %}
+          {% assign  image_url_210 = section.settings.section_image | img_url: '210x' %}
+          {% assign  image_url_420 = section.settings.section_image | img_url: '420x' %}
+          {% assign  image_url_730 = section.settings.section_image | img_url: '730x' %}
+          {% assign  image_url_1270 = section.settings.section_image | img_url: '1270x' %}
+          {% assign  image_url_1650 = section.settings.section_image | img_url: '1650x' %}
+          {% assign  image_url_2000 = section.settings.section_image | img_url: '2000x' %}
+          <img loading="lazy"  src="{{ image_url_small }}"
+               data-srcset="{{ image_url_210 }} 210w, {{ image_url_420 }} 420w, {{ image_url_730 }} 730w, {{ image_url_1270 }} 1270w, {{ image_url_1650 }} 1650w,  {{ image_url_2000 }} 2000w,"
+               data-sizes="auto"  alt="{{ image_alt }}"
+               class="lazyload section_img_link_img {% if section.settings.jsrenderheight %} centered{% endif %}{% if section.settings.jsrenderheight-mobile %} centered-mobile{% endif %}{% if section.settings.jsrenderheight == false and section.settings.jsrenderheight-mobile == false %} notcentred{% endif %}"
+               />
+
+        </div>
+
+        {% if article_link == true %}
+        </a>
+      {% else %}
+      </article>
+    {% endif %}
+
+
+
+  </a>
+</div>
+
+{% schema %}
+{
+"name": "Journal Highlight",
+"settings": [
+{
+"id": "section_title",
+"type": "text",
+"label": "Section Title"
+},
+{
+  "id": "section_image",
+"type": "image_picker",
+"label": "Image"
+},
+{
+"id": "section_description",
+"type": "textarea",
+"label": "Section Description"
+}
+],
+"presets": [
+{
+"name": "Journal Highlight",
+"category": "A.D. Deertz",
+"blocks": [
+]
+}
+]
+}
+{% endschema %}
+

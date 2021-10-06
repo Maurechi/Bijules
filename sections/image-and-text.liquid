@@ -1,0 +1,289 @@
+{%- style -%}
+@media (max-width: 600px) {
+  .full-mobile {
+    width: 100%;
+  }
+}
+{%- endstyle -%}
+
+{%- liquid 
+   if section.settings.image-width 
+   assign image__width = section.settings.image-width 
+   else 
+   assign image__width = 7 
+   endif 
+   assign text__width = 12 | minus: image__width 
+  
+   if section.settings.button_type == 'button--link' 
+   assign link__class = 'arrow-link' 
+   else 
+   assign link__class = 'btn button' 
+   endif 
+-%}
+
+<div style="padding-top: {{section.settings.margin__top}}px; padding-bottom: {{section.settings.margin__bottom}}px">
+  {% capture image_layout %}
+  <div class="  feature-row__item feature-row__item-image col-xs-12 col-sm-6 col-md-{{image__width}} image__{{ section.settings.layout }}">
+      {% if section.settings.image != blank %}
+      {{ section.settings.image | img_url: '1000x1000' | img_tag: section.settings.image.alt, 'feature-row__image lazyload' }}
+      {% else %}
+      {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+      {% endif %}
+  </div>
+  {% endcapture %}
+
+
+
+  <div class="page-width feature-row" style="background: {{ section.settings.background-color }}">
+
+    {% if section.settings.button_link != blank %}
+    <a href="{{ section.settings.button_link }}" class="wrapper-link">
+      {% endif %}
+    <div class="row">
+
+
+
+          {% if section.settings.layout == 'left' %}
+          {{ image_layout }}
+          {% endif %}
+
+          <div class="full-mobile feature-row__item feature-row__text feature-row__text--{{ section.settings.text-layout }} col-xs-12 col-sm-6 col-md-{{ text__width }}" style="display: flex; align-items: {{ section.settings.text-vertical }};">
+
+            <div class="feature-row__text-wrapper clear">
+
+              <h2>
+                {% if section.settings.title != blank %}
+                  <span class="h3">{{ section.settings.title | escape }}</span>
+                {% endif %}
+
+                {% if section.settings.text != blank %}
+                  <span class="rte-setting featured-row__subtext">{{ section.settings.text }}</span>
+                {% endif %}
+              </h2>
+
+              {% if section.settings.small_text != blank %}
+                <div>{{ section.settings.small_text }}</div>
+              {% endif %}
+
+              {% if section.settings.button_label != blank and section.settings.button_link != blank %}
+                <span class="cta {{ link__class }} {{ section.settings.button_type }} align-{{ section.settings.button-alignment }}" >
+                  {{ section.settings.button_label }}
+                </span>
+              {% endif %}
+            </div>
+          </div>
+          {% if section.settings.layout == 'right' %}
+          {{ image_layout }}
+          {% endif %}
+    </div>
+      {% if section.settings.button_link != blank %}
+    </a>
+    {% endif %}
+  </div>
+</div>
+
+
+{% schema %}
+{
+  "name": "Image with text",
+  "settings": [
+    {
+      "type": "color",
+      "id": "background-color",
+      "label": "Background Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Link (Optional)"
+    },
+    {
+      "type": "range",
+      "id": "margin__top",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "label": "Margin Top",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "margin__bottom",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "label": "Margin bottom",
+      "default": 0
+    },
+    {
+      "type": "select",
+      "id": "image-width",
+      "label": "Image width",
+      "default": "7",
+      "options": [
+        {
+          "value": "3",
+          "label": "3"
+        },
+        {
+          "value": "4",
+          "label": "4"
+        },
+        {
+          "value": "5",
+          "label": "5"
+        },
+        {
+          "value": "6",
+          "label": "6"
+        },
+        {
+          "value": "7",
+          "label": "7"
+        },
+        {
+          "value": "8",
+          "label": "8"
+        }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "layout",
+      "label": "Layout",
+      "default": "left",
+      "options": [
+        {
+          "value": "left",
+          "label": "Image on left/Mobile Top"
+        },
+        {
+          "value": "right",
+          "label": "Image on right/Mobile Bottom"
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Heading Text"
+    },
+    {
+      "type": "select",
+      "id": "text-layout",
+      "label": "Text Layout",
+      "default": "left",
+      "options": [
+        {
+          "value": "left",
+          "label": "Text align left"
+        },
+        {
+          "value": "right",
+          "label": "Text align right"
+        },
+        {
+          "value": "center",
+          "label": "text align center"
+        }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "text-vertical",
+      "label": "Text Vertical Align",
+      "default": "center",
+      "options": [
+        {
+          "value": "center",
+          "label": "Text align Center"
+        },
+        {
+          "value": "flex-start",
+          "label": "Text align Top"
+        },
+        {
+          "value": "flex-end",
+          "label": "Text align Bottom"
+        }
+      ]
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Large Text",
+      "default": "<p>Pair large text with an image to give focus to your chosen product, collection, or blog post.</p>"
+    },
+    {
+      "type": "richtext",
+      "id": "small_text",
+      "label": "Small Text",
+      "default": "<p>This can be a small text giving extra info</p>"
+    },
+    {
+      "type": "select",
+      "id": "button_type",
+      "label": "Button Type",
+      "options": [
+        {
+          "value": "button--link",
+          "label": "Link"
+        },
+        {
+          "value": "button--transparent",
+          "label": "Transparent"
+        },
+        {
+          "value": "button--secondary",
+          "label": "Button Secondary"
+        },
+        {
+          "value": "button--primary",
+          "label": "Button Primary"
+        }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "button-alignment",
+      "label": "Button Text alignment",
+      "default": "left",
+      "options": [
+        {
+          "value": "left",
+          "label": "left"
+        },
+        {
+          "value": "right",
+          "label": "right"
+        },
+        {
+          "value": "center",
+          "label": "center"
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label"
+    }
+  ],
+  "presets": [
+      {
+        "category": "Single Image with side text",
+        "name": "Single Image with side text"
+      }
+    ]
+}
+{% endschema %}
+

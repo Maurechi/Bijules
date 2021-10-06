@@ -1,0 +1,26 @@
+{
+  "sections": {
+    "product": {
+      "type": "product",
+      "settings": {
+        "show_vendor": false,
+        "always_show_description": true,
+        "form_position": "before_description",
+        "variants_option": "swatches",
+        "swatch_align": "center",
+        "showcase_size": "big",
+        "showcase_rotation_effect": "slide",
+        "showcase_scroll_gallery": true,
+        "showcase_show_thumbnails": true,
+        "showcase_zoom_enabled": true,
+        "showcase_zoom_magnification": "1",
+        "related_products_enabled": true,
+        "related_products_grid_items_per_row": "4",
+        "related_products_number_of_rows": "1"
+      }
+    }
+  },
+  "order": [
+    "product"
+  ]
+}

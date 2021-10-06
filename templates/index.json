@@ -1,0 +1,26 @@
+{
+  "sections": {
+    "163230182994ccba66": {
+      "type": "home_featured_text",
+      "blocks": {
+        "163230182994ccba66-0": {
+          "type": "richtext",
+          "settings": {
+            "content": "<p>Add your own custom content to give more information about your store, availability details...<\/p>"
+          }
+        }
+      },
+      "block_order": [
+        "163230182994ccba66-0"
+      ],
+      "settings": {
+        "title": "Your title",
+        "use_secondary_background": false,
+        "content_position": "center"
+      }
+    }
+  },
+  "order": [
+    "163230182994ccba66"
+  ]
+}

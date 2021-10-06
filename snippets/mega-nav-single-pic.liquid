@@ -1,0 +1,124 @@
+{% comment %} Mega Nav Containing Sub_links and Sub_Sub_Links with one single image to the right {% endcomment %}
+<div class="mega-nav-submenu-wrapper container-fluid no-padding" id="mega-menu-oben">
+  <div class="nav-border-top"></div>
+  <div class="mega-nav-catalog-nav-lists-wrapper regular-padding" >
+    {% if horizontal_nav_linklist.handle != '' %} 
+    <ul class="top-mega-nav-link-list-mm level-1 mega-nav-catalog-nav-list dis-flex" id="{{ linklists.oben-nav-one.handle }}">
+      {% comment %} LEVEL 1 {% endcomment %}
+
+      {% for sub_link in link.links limit:1 %}
+      <li class="featured-menu-block-li top-mega-nav-link_mm_li{% if sub_link.active %} active{% endif %}{% comment %} col-2 col-lg-2 {% endcomment %}{% if sub_link.object.image %} nav-image-link{% endif %} level-1  mega-nav-col">
+        {% comment %} LEVEL 2 {% endcomment %}
+        <ul class="featured-menu-block-ul level-2">
+          {% for sub_sub_link in sub_link.links %}
+          <li class="level-2">
+            <a href="{{ sub_sub_link.url }}">{{ sub_sub_link.title | escape }}</a>
+          </li>
+          {% endfor %}
+        </ul>
+      </li>
+      {% endfor %}
+
+      {% for sub_link in link.links offset:1 %}
+      <li class="top-mega-nav-link_mm_li{% if sub_link.active %} active{% endif %}{% comment %}col-2 col-lg-2 {% endcomment %}{% if sub_link.object.image %} nav-image-link{% endif %} level-1  mega-nav-col">
+        <div class="nav-title">
+          <a  class="top-mega-nav-link_mm{% if sub_link.active %} active{% endif %} level-1" href="{{ sub_link.url }}">
+            <span>{{ sub_link.title }}</span>
+          </a>
+        </div>
+        {% comment %} LEVEL 2 {% endcomment %}
+        <ul class="level-2">
+          {% for sub_sub_link in sub_link.links %}
+          <li class="level-2">
+            <a href="{{ sub_sub_link.url }}">{{ sub_sub_link.title | escape }}</a>
+          </li>
+          {% endfor %}
+        </ul>
+      </li>
+      {% endfor %}
+
+      {% comment %} IMAGE {% endcomment %}
+      {% case index %}
+      {% when 1 %}
+      {% if settings.navlink1_image %}
+
+      <li class="single-featured-image top-mega-nav-link-image-mm top-mega-nav-link-image-right top-mega-nav-link_mm_li image__link{% if link.active %} active{% endif %} level-1">
+        <a  class="top-mega-nav-link_mm {% if link.active %}active{% endif %} level-1" href="{{ link.url }}">
+          <div class="menu-image-teaser-link-wrapper">
+            <img loading="lazy" class="lazyload" src="{{ settings.navlink1_image | img_url: '500x' }}" alt="{{ shop.name | escape }}"/>
+            <div class="top-mega-nav-link-image-right-text">{{ settings.navlink1_heading1 }}<span>{{ settings.navlink1_heading2 }}</span></div>
+          </div>
+        </a>
+      </li>
+
+      {% endif %}
+      {% when 2 %}
+      {% if settings.navlink2_image %}
+      <li class="single-featured-image top-mega-nav-link-image-mm top-mega-nav-link-image-right top-mega-nav-link_mm_li image__link{% if link.active %} active{% endif %} level-1">
+        <a  class="top-mega-nav-link_mm{% if link.active %} active{% endif %} level-1" href="{{ link.url }}">
+          <div class="menu-image-teaser-link-wrapper">
+            <img loading="lazy" src="{{ settings.navlink2_image | img_url: '500x' }}" />
+            <div class="top-mega-nav-link-image-right-text">{{ settings.navlink2_heading1 }}<span>{{ settings.navlink2_heading2 }}</span></div>
+          </div>
+        </a>
+      </li>
+
+      {% endif %}
+      {% when 3 %}
+      {% if settings.navlink3_image %}
+      <li class="single-featured-image top-mega-nav-link-image-mm top-mega-nav-link-image-right top-mega-nav-link_mm_li image__link{% if link.active %} active{% endif %} level-1">
+        <a  class="top-mega-nav-link_mm{% if link.active %} active{% endif %} level-1" href="{{ link.url }}">
+          <div class="menu-image-teaser-link-wrapper">
+            <img loading="lazy" src="{{ settings.navlink3_image | img_url: '500x' }}" />
+            <div class="top-mega-nav-link-image-right-text">{{ settings.navlink3_heading1 }}<span>{{ settings.navlink3_heading2 }}</span></div>
+          </div>
+        </a>
+      </li>
+
+      {% endif %}
+      {% when 4 %}
+      {% if settings.navlink4_image %}
+      <li class="single-featured-image top-mega-nav-link-image-mm top-mega-nav-link-image-right top-mega-nav-link_mm_li image__link{% if link.active %} active{% endif %} level-1">
+        <a  class="top-mega-nav-link_mm{% if link.active %} active{% endif %} level-1" href="{{ link.url }}">
+          <div class="menu-image-teaser-link-wrapper">
+            <img loading="lazy" src="{{ settings.navlink4_image | img_url: '500x' }}" />
+            <div class="top-mega-nav-link-image-right-text">{{ settings.navlink4_heading1 }}<span>{{ settings.navlink4_heading2 }}</span></div>
+          </div>
+        </a>
+      </li>
+
+      {% endif %}
+      {% when 5 %}
+      {% if settings.navlink5_image %}
+      <li class="single-featured-image top-mega-nav-link-image-mm top-mega-nav-link-image-right top-mega-nav-link_mm_li image__link{% if link.active %} active{% endif %} level-1">
+        <a  class="top-mega-nav-link_mm{% if link.active %} active{% endif %} level-1" href="{{ link.url }}">
+          <div class="menu-image-teaser-link-wrapper">
+            <img loading="lazy" src="{{ settings.navlink5_image | img_url: '500x' }}" />
+            <div class="top-mega-nav-link-image-right-text">{{ settings.navlink5_heading1 }}<span>{{ settings.navlink5_heading2 }}</span></div>
+          </div>
+        </a>
+      </li>
+
+      {% endif %}
+
+      {% when 6 %}
+      {% if settings.navlink6_image %}
+      <li class="single-featured-image top-mega-nav-link-image-mm top-mega-nav-link-image-right top-mega-nav-link_mm_li image__link{% if link.active %} active{% endif %} level-1">
+        <a  class="top-mega-nav-link_mm{% if link.active %} active{% endif %} level-1" href="{{ link.url }}">
+          <div class="menu-image-teaser-link-wrapper">
+            <img loading="lazy" src="{{ settings.navlink6_image | img_url: '500x' }}" />
+            <div class="top-mega-nav-link-image-right-text">{{ settings.navlink6_heading1 }}<span>{{ settings.navlink6_heading2 }}</span></div>
+          </div>
+        </a>
+      </li>
+
+      {% endif %}
+
+      {% endcase %}
+
+
+    </ul>
+    {% endif %}
+  </div>
+</div>
+

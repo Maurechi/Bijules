@@ -1,0 +1,31 @@
+<section 
+  class="clear index-module section home__featured-headline"
+  style="
+    background-color: {{ block.settings.background_color }};
+    margin-top: {{ block.settings.margin_top }}px;
+    margin-bottom: {{ block.settings.margin_bottom }}px;
+  ">
+  <div class="{{ settings.gutter }} {{ settings.container }}">
+    <div class="content-max-width-wrapper">
+    {% if block.settings.title != blank %}
+      {% if block.settings.url != blank %}
+      <a href="{{block.settings.url}}">
+      {% endif %}
+        <h{{ block.settings.header_size }}
+          class="section__title {% if block.settings.font_size != 14 %}flexible-font-size{% endif %} {{ block.settings.font_size_mobile }}"
+          style="
+            color: {{ block.settings.color }};
+            text-decoration: {% if block.settings.underline == true %} underline {% else %} unset {% endif %};
+            text-align: {{ block.settings.content_position }};
+            font-weight: {{ block.settings.font_weight }};
+            {% if block.settings.font_size != 14 %}font-size: {{block.settings.font_size}}px;{% endif %}
+        ">
+          {{ block.settings.title }}
+        </h{{ block.settings.header_size }}>
+      {% if block.settings.url != blank %}
+      </a>
+      {% endif %}
+    {% endif %}
+    </div>
+  </div>
+</section>

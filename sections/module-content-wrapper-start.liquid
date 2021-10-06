@@ -1,0 +1,70 @@
+
+    <div class="container-fluid {{ section.settings.gutter }} {{ section.settings.collection-widht-padding }}" style="background:{{ section.settings.content-background }};">
+        <div class="row">
+
+
+
+
+{% schema %}
+
+  {
+    "name": "ContentWrapperStart",
+    "class": "module-content-wrapper-start",
+    "settings": [
+      {
+        "type": "select",
+        "id": "gutter",
+        "label": "Space between objects",
+        "options": [
+          {
+            "value": "no-padding",
+            "label": "no space"
+          },
+          {
+            "value": "small-padding",
+            "label": "small space"
+          },
+          {
+            "value": "regular-padding",
+            "label": "regular padding"
+          },
+          {
+            "value": "big-padding",
+            "label": "big space"
+          }
+        ],
+        "default": "regular-padding"
+      },
+      {
+        "type": "select",
+        "id": "collection-widht-padding",
+        "label": "Collection Outer Padding",
+        "options": [
+          {
+            "value": "with-outer-padding",
+            "label": "With Outer Padding"
+          },
+          {
+            "value": "without-outer-padding",
+            "label": "No Outer Padding"
+          }
+        ],
+        "default": "with-outer-padding"
+      },
+      {
+        "type": "color",
+        "id": "content-background",
+        "label": "Button Color",
+        "default": "#ffffff"
+      }
+    ],
+    "presets": [
+      {
+        "category": "HTML",
+        "name": "Content Wrapper Start"
+      }
+    ]
+  }
+  
+
+{% endschema %}

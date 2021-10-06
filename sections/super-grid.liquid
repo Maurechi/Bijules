@@ -1,0 +1,389 @@
+{%- style -%}
+  .new-grid {
+    display: grid;
+    column-gap: {{section.settings.column_gap}}rem;
+    row-gap: {{section.settings.row_gap}}rem;
+  }
+  @media (min-width: 600px) {
+    .new-grid {
+      grid-template-columns: repeat({{section.settings.row_md}}, 1fr);
+    }
+  }
+  @media (max-width: 600px) {
+    .new-grid {
+      grid-template-columns: repeat({{section.settings.row_sm}}, 1fr);
+    }
+  }
+{%- endstyle -%}
+
+{%- liquid 
+  assign text_align = section.settings.text_align
+  assign px = section.settings.px
+  assign pt = section.settings.pt
+  assign hide_price = section.settings.hide_price
+  assign font_sm = section.settings.font_sm
+  assign font_md = section.settings.font_md
+  -%}
+
+
+
+<div style="padding: {{section.settings.mt}}px {{section.settings.grid-px}}px {{section.settings.mb}}px {{section.settings.grid-px}}px">
+    <div class="new-grid">
+        {% for block in section.blocks %}
+          {% assign blocks_qty = section.blocks.size %}
+            {% case block.type %}
+              {% when 'product' %}
+                {% render 'block__product_row',block: block, hide_price: hide_price, text_align: text_align, pt: pt, px: px, font_md: font_md, font_sm: font_sm %}
+              {% when 'collection' %}
+                {% render 'block__collection_row', block: block, text_align: text_align, pt: pt, px: px, font_md: font_md, font_sm: font_sm %}
+              {% when 'hover_image'%}
+                {% render 'block__hover-image_row', block: block, text_align: text_align, pt: pt, px: px, font_md: font_md, font_sm: font_sm %}
+            {% endcase %}
+        {% endfor %}
+    </div>
+</div>
+
+{% schema %}
+{ "name": "Super Grid",
+  "settings": [
+        {
+          "type": "paragraph",
+          "content": "Always Save after changes to display images properly."
+        },
+        {
+          "label": "Elements per row Desktop",
+          "type": "range",
+          "id": "row_md",
+          "min": 1,
+          "max": 4,
+          "step": 1,
+          "default": 4
+        },
+        {
+          "label": "Elements per row Mobile",
+          "type": "range",
+          "id": "row_sm",
+          "min": 1,
+          "max": 4,
+          "step": 1,
+          "default": 2
+        },
+        {
+          "label": "Space between Columns",
+          "type": "range",
+          "id": "column_gap",
+          "min": 0,
+          "max": 4,
+          "step": 0.5,
+          "default": 1
+        },
+        {
+          "label": "Space between Rows",
+          "info": "Applies only when there is more than one row",
+          "type": "range",
+          "id": "row_gap",
+          "min": 0,
+          "max": 4,
+          "step": 0.5,
+          "default": 2
+        },
+        {
+          "label": "Grid Container Horizontal Padding",
+          "type": "range",
+          "id": "grid-px",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "default": 0
+        },
+        {
+          "label": "Grid Container Margin Bottom",
+          "type": "range",
+          "id": "mb",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "default": 50
+        },
+        {
+          "label": "Grid Container Margin Top",
+          "type": "range",
+          "id": "mt",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "default": 0
+        },
+        {
+          "label": "Font Size Desktop",
+          "type": "range",
+          "id": "font_md",
+          "min": 0,
+          "max": 4,
+          "step": 0.1,
+          "default": 1
+        },
+        {
+          "label": "Font Size Mobile",
+          "type": "range",
+          "id": "font_sm",
+          "min": 0,
+          "max": 4,
+          "step": 0.1,
+          "default": 1
+        },
+        {
+          "type": "select",
+          "id": "text_align",
+          "label": "Global Text Alignment",
+          "info": "Can be overriden from within each block settings",
+          "default": "center",
+          "options": [
+            {
+              "value": "center",
+              "label": "Center"
+            },
+            {
+              "value": "left",
+              "label": "Left"
+            },
+            {
+              "value": "right",
+              "label": "Right"
+            }
+          ]
+        },
+        {
+          "label": "Global Padding Top Text",
+          "type": "range",
+          "info": "Only use if you plan on having every text under the images",
+          "id": "pt",
+          "min": 0,
+          "max": 5,
+          "step": 0.5,
+          "default": 0
+        },
+        {
+          "label": "Global Padding Sides Text",
+          "type": "range",
+          "id": "px",
+          "min": 0,
+          "max": 5,
+          "step": 0.5,
+          "default": 1
+        },
+        {
+          "type": "checkbox",
+          "id": "hide_price",
+          "label": "Hide Product's Price",
+          "default": false
+        }
+      ],
+  "blocks": [
+    {
+      "type": "product",
+      "name": "Product",
+      "settings": [
+        {
+          "type": "paragraph",
+          "content": "Always Save after changes to display images properly. If images continue not to display after a few seconds, reload the page"
+        },
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Product"
+        },
+        {
+          "label": "Text Vertical Align",
+          "type": "range",
+          "id": "text_top",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "default": 100
+        },
+        {
+          "type": "checkbox",
+          "id": "custom_align",
+          "label": "Allow horizontal align",
+          "info": "This will override the Section's text-align setting",
+          "default": false
+        },
+        {
+          "type": "select",
+          "id": "text_horizontal_align",
+          "label": "Custom Text Alignment",
+          "info": "Will work only if 'Allow horizontal align' is checked",
+          "default": "center",
+          "options": [
+            {
+              "value": "center",
+              "label": "Center"
+            },
+            {
+              "value": "left",
+              "label": "Left"
+            },
+            {
+              "value": "right",
+              "label": "Right"
+            }
+          ]
+        },
+        {
+        "type": "color",
+        "id": "text_color",
+        "label": "Text Color",
+        "default" : "#000000"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_info",
+          "label": "Show Text",
+          "default": true
+        }
+      ]
+    },
+    {
+      "type": "collection",
+      "name": "Collection",
+      "settings": [
+        {
+          "type": "paragraph",
+          "content": "Always Save after changes to display images properly. If images continue not to display after a few seconds, reload the page"
+        },
+        {
+          "type": "collection",
+          "id": "collection",
+          "label": "Collection"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_info",
+          "label": "Show Text",
+          "default": true
+        },
+        {
+          "label": "Text Vertical Align",
+          "type": "range",
+          "id": "text_top",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "default": 100
+        },
+        {
+          "type": "checkbox",
+          "id": "custom_align",
+          "label": "Allow horizontal align",
+          "info": "This will override the Section's text-align setting",
+          "default": false
+        },
+        {
+          "type": "select",
+          "id": "text_horizontal_align",
+          "label": "Custom Text Alignment",
+          "info": "Will work only if 'Allow horizontal align' is checked",
+          "default": "center",
+          "options": [
+            {
+              "value": "center",
+              "label": "Center"
+            },
+            {
+              "value": "left",
+              "label": "Left"
+            },
+            {
+              "value": "right",
+              "label": "Right"
+            }
+          ]
+        },
+        {
+        "type": "color",
+        "id": "text_color",
+        "label": "Text Color",
+        "default" : "#000000"
+        }
+      ]
+    },
+    {
+      "type":"hover_image",
+      "name":"Hover image",
+      "settings":[ 
+        {
+        "type":"url",
+        "id":"image_link",
+        "label":"Link (optional)"
+        },
+        {
+        "type": "image_picker",
+        "id": "image",
+        "label": "Image"
+        },
+        {
+        "type": "image_picker",
+        "id": "image_2",
+        "label": "Hover Image (optional)"
+        },
+        {
+        "type": "text",
+        "id": "image_text",
+        "label": "Text (optional)"
+        },
+        {
+          "label": "Text Vertical Align",
+          "type": "range",
+          "id": "text_top",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "default": 100
+        },
+        {
+          "type": "checkbox",
+          "id": "custom_align",
+          "label": "Allow horizontal align",
+          "info": "This will override the Section's text-align setting",
+          "default": false
+        },
+        {
+          "type": "select",
+          "id": "text_horizontal_align",
+          "label": "Custom Text Alignment",
+          "info": "Will work only if 'Allow horizontal align' is checked",
+          "default": "center",
+          "options": [
+            {
+              "value": "center",
+              "label": "Center"
+            },
+            {
+              "value": "left",
+              "label": "Left"
+            },
+            {
+              "value": "right",
+              "label": "Right"
+            }
+          ]
+        },
+        {
+        "type": "color",
+        "id": "text_color",
+        "label": "Text Color",
+        "default" : "#000000"
+        }
+      ]
+    }
+  ],
+  "presets": [
+      {
+        "category": "Super Grid",
+        "name": "Super Grid"
+      }
+    ]
+}
+{% endschema %}
+

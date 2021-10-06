@@ -1,0 +1,25 @@
+<div class="row">
+  <div 
+    class="col-12 home__button" 
+    style="
+      display:flex;
+      overflow: hidden;
+      justify-content:{{ block.settings.alignment }};
+    ">
+    <a 
+      href="{{ block.settings.button_link }}" 
+      class="button {{ block.settings.font_size_mobile }} {{ block.settings.button_type }} align-{{ block.settings.button-alignment }}"
+      style="
+        color:{{ block.settings.color }};
+        background-color:{{ block.settings.color_background }};
+        font-size:{{ block.settings.font_size }}px;
+        font-weight: {{ block.settings.font_weight }};
+        margin-left: {{ block.settings.margin_left }}%;
+        margin-right: {{ block.settings.margin_right }}%;
+        margin-top: {{ block.settings.margin_top }}%;
+        margin-bottom: {{ block.settings.margin_bottom }}%;
+      ">
+      {{ block.settings.button_label }}
+    </a>
+  </div>  
+</div>

@@ -1,0 +1,91 @@
+{%- style -%}
+.hover-wrapper {
+  position: relative;
+}
+.hover-show {
+  position: absolute;
+  left: 0;
+}  
+.hover-hide {
+  position: relative;
+  transition: opacity 1s ease;
+  z-index: 10;
+}
+.hover-hide:hover {
+  opacity: 0
+}
+.title_wrapper {
+  position: absolute;
+  width: 100%;
+  z-index: 20;
+}
+@media (min-width: 600px) {
+  .title_wrapper {
+    font-size: {{font_md}}rem
+  }
+}
+@media (max-width: 600px) {
+  .title_wrapper {
+    font-size: {{font_sm}}rem
+  }
+}
+.section_align {
+  text-align: {{ text_align }}
+}
+
+{%- endstyle -%}  
+{%- liquid 
+  assign custom_align = block.settings.custom_align
+  assign top = block.settings.text_top
+  assign horizontal_align = block.settings.text_horizontal_align
+  assign color = block.settings.text_color
+  assign text = block.settings.image_text
+
+  assign image_alt = block.settings.image.alt
+  assign  image_url_small = block.settings.image | img_url: '60x'
+  assign  image_url_210 = block.settings.image | img_url: '210x'
+  assign  image_url_420 = block.settings.image | img_url: '420x'
+  assign  image_url_730 = block.settings.image | img_url: '730x'
+  assign  image_url_1270 = block.settings.image | img_url: '1270x'
+  assign  image_url_1650 = block.settings.image | img_url: '1650x'
+  assign  image_url_2000 = block.settings.image | img_url: '2000x'
+
+   assign image_alt_2 = block.settings.image_2.alt
+   assign  image_url_small_2 = block.settings.image_2 | img_url: '60x'
+   assign  image_url_210_2 = block.settings.image_2 | img_url: '210x'
+   assign  image_url_420_2 = block.settings.image_2 | img_url: '420x'
+   assign  image_url_730_2 = block.settings.image_2 | img_url: '730x'
+   assign  image_url_1270_2 = block.settings.image_2 | img_url: '1270x'
+   assign  image_url_1650_2 = block.settings.image_2 | img_url: '1650x'
+   assign  image_url_2000_2 = block.settings.image_2 | img_url: '2000x'
+   -%}
+   
+{% if block.settings.image_link %}
+  <a href="{{ block.settings.teaser_link }}">
+{% endif %}
+
+    <div class="hover-wrapper">
+        <img loading="lazy"  src="{{ image_url_small }}"
+              data-srcset="{{ image_url_210 }} 210w, {{ image_url_420 }} 420w, {{ image_url_730 }} 730w  {{ image_url_1270 }} 1270w, {{ image_url_1650 }} 1650w,  {{ image_url_2000 }} 2000w,"
+              data-sizes="auto"  alt="{{ image_alt }}"
+              class="{% if block.settings.image_2 %}hover-hide {% endif %} lazyload"
+              />
+        {% if block.settings.image_2 %}
+          <img loading="lazy"  src="{{ image_url_small_2 }}"
+                data-srcset="{{ image_url_210_2 }} 210w, {{ image_url_420_2 }} 420w, {{ image_url_730_2 }} 730w  {{ image_url_1270_2 }} 1270w, {{ image_url_1650_2 }} 1650w,  {{ image_url_2000_2 }} 2000w,"
+                data-sizes="auto"  alt="{{ image_alt_2 }}"
+                class="hover-show lazyload"
+                />
+        {% endif %}
+        {% if text != blank %}
+          <div class="section_align">
+            <div class="title_wrapper" style="top: {{ top }}%; {% if custom_align %}text-align: {{ horizontal_align }} {% endif %}">
+              <h3 style="color: {{ color }}; padding: {{ pt }}rem {{ px }}rem 0rem {{ px }}rem !important;">{{ text }}</h3>
+            </div>
+          </div>
+        {% endif %}
+    </div>
+
+{% if block.settings.image_link %}
+  </a>
+{% endif %}

@@ -1,0 +1,112 @@
+
+{% if section.settings.stl_version == "displayed" %}
+  {% render "shop-the-look-displayed-3" %}
+{% else %}
+  {% render "shop-the-look-carousel-3" %}
+{% endif %}
+
+
+{% schema %}
+{
+  "name": "Shop the Look 3",
+  "settings": [
+    {
+           "type": "paragraph",
+           "content": "Preview may break during editing. Hit Save in the Customizer to reload."
+        }, 
+        {
+          "type": "radio",
+          "id": "stl_version",
+          "label": "Shop the Look type",
+          "info": "Hit Save in the Customizer to reflect changes properly",
+          "options": [
+            {
+              "value": "displayed",
+              "label": "Displayed (Max 2 items)"
+            },
+            {
+              "value": "carousel",
+              "label": "Carousel"
+            }
+          ],
+          "default": "carousel"
+        },
+        {
+          "id": "title",
+          "type": "text",
+          "label": "Title"
+        },
+        {
+          "id": "subtitle",
+          "type": "text",
+          "label": "Subtitle"
+        },
+    {
+          "id": "cta_text",
+          "type": "text",
+          "label": "Button Text",
+    "default": "View Product"
+        },
+    {
+          "id": "cta_text_mobile",
+          "type": "text",
+          "label": "Mobile Button Text",
+    "default": "View Product"
+        },
+        {
+          "id": "image",
+          "type": "image_picker",
+          "label": "Image"
+        },
+    {
+            "type":   "range",
+            "id":     "section-margin",
+            "min":       0,
+            "max":       100,
+            "step":      5,
+            "unit":      "px",
+            "label":     "Section Top/Bottom Margin",
+            "default":   0
+        }
+],
+"blocks": [
+    {
+      "type": "product",
+      "name": "Product",
+      "settings": [
+        {
+          "id": "product",
+          "type": "product",
+          "label": "Product"
+        },
+        {
+          "type": "range",
+          "id": "top",
+          "label": "Position from Top",
+          "step": 1,
+          "min": 0,
+          "max": 100,
+          "unit": "%",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "left",
+          "label": "Position from Left",
+          "step": 1,
+          "min": 0,
+          "max": 100,
+          "unit": "%",
+          "default": 0
+        }
+      ]
+    }
+  ],
+"presets": [
+      {
+        "category": "Shop the look 3",
+        "name": "Shop the look 3"
+      }
+    ]
+}
+{% endschema %}

@@ -1,0 +1,7 @@
+<a href="#" id="details-tab-toggler" class="flip"><span class="switch">Details</span><svg class="icon icon-dropdown-arrow"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-dropdown-arrow"></use></svg></a>
+
+<div id="details-tab" class="delivery-notice" style="display:none;">
+  {% if product.metafields.custom_fields["details"] != blank %}
+  {{ product.metafields.custom_fields["details"] }}
+  {% endif %}
+</div>
