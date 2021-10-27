@@ -1,17 +1,75 @@
 {%- style -%}
-  .new-grid {
+  .sgrid {
     display: grid;
-    column-gap: {{section.settings.column_gap}}rem;
-    row-gap: {{section.settings.row_gap}}rem;
   }
   @media (min-width: 600px) {
-    .new-grid {
-      grid-template-columns: repeat({{section.settings.row_md}}, 1fr);
+    .desktop-sgrid-1 {
+      grid-template-columns: 1fr;
+    }
+    .desktop-sgrid-2 {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .desktop-sgrid-3 {
+      grid-template-columns: repeat(3, 1fr);
+    }
+    .desktop-sgrid-4 {
+      grid-template-columns: repeat(4, 1fr);
+    }
+    .desktop-width-100 {
+      width: 100%
+    }
+    .desktop-width-95 {
+      width: 95%
+    }
+    .desktop-width-90 {
+      width: 90%
+    }
+    .desktop-width-85 {
+      width: 85%
+    }
+    .desktop-width-80 {
+      width: 80%
+    }
+    .desktop-width-75 {
+      width: 75%
+    }
+    .desktop-width-70 {
+      width: 70%
     }
   }
   @media (max-width: 600px) {
-    .new-grid {
-      grid-template-columns: repeat({{section.settings.row_sm}}, 1fr);
+    .mobile-sgrid-1 {
+      grid-template-columns:  1fr;
+    }
+    .mobile-sgrid-2 {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .mobile-sgrid-3 {
+      grid-template-columns: repeat(3, 1fr);
+    }
+    .mobile-sgrid-4 {
+      grid-template-columns: repeat(4, 1fr);
+    }
+    .mobile-width-100 {
+      width: 100%
+    }
+    .mobile-width-95 {
+      width: 95%
+    }
+    .mobile-width-90 {
+      width: 90%
+    }
+    .mobile-width-85 {
+      width: 85%
+    }
+    .mobile-width-80 {
+      width: 80%
+    }
+    .mobile-width-75 {
+      width: 75%
+    }
+    .mobile-width-70 {
+      width: 70%
     }
   }
 {%- endstyle -%}
@@ -23,23 +81,27 @@
   assign hide_price = section.settings.hide_price
   assign font_sm = section.settings.font_sm
   assign font_md = section.settings.font_md
+  assign max-width = section.settings.max-width
+  assign max-width-mobile = section.settings.max-width-mobile
   -%}
 
 
 
-<div style="padding: {{section.settings.mt}}px {{section.settings.grid-px}}px {{section.settings.mb}}px {{section.settings.grid-px}}px">
-    <div class="new-grid">
-        {% for block in section.blocks %}
-          {% assign blocks_qty = section.blocks.size %}
-            {% case block.type %}
-              {% when 'product' %}
-                {% render 'block__product_row',block: block, hide_price: hide_price, text_align: text_align, pt: pt, px: px, font_md: font_md, font_sm: font_sm %}
-              {% when 'collection' %}
-                {% render 'block__collection_row', block: block, text_align: text_align, pt: pt, px: px, font_md: font_md, font_sm: font_sm %}
-              {% when 'hover_image'%}
-                {% render 'block__hover-image_row', block: block, text_align: text_align, pt: pt, px: px, font_md: font_md, font_sm: font_sm %}
-            {% endcase %}
-        {% endfor %}
+<div style="display: flex; justify-content: center; padding: {{section.settings.mt}}px 0px {{section.settings.mb}}px 0px">
+    <div class="desktop-width-{{max-width}} mobile-width-{{max-width-mobile}} sgrid desktop-sgrid-{{section.settings.row_md}} mobile-sgrid-{{section.settings.row_sm}}" style="column-gap: {{section.settings.column_gap}}rem; row-gap: {{section.settings.row_gap}}rem;">
+        {%- liquid 
+          for block in section.blocks
+            assign blocks_qty = section.blocks.size
+            case block.type
+              when 'product'
+                render 'block__product_row',block: block, hide_price: hide_price, text_align: text_align, pt: pt, px: px, font_md: font_md, font_sm: font_sm
+              when 'collection'
+                render 'block__collection_row', block: block, text_align: text_align, pt: pt, px: px, font_md: font_md, font_sm: font_sm
+              when 'hover_image'
+                render 'block__hover-image_row', block: block, text_align: text_align, pt: pt, px: px, font_md: font_md, font_sm: font_sm
+            endcase
+          endfor
+        -%}
     </div>
 </div>
 
@@ -49,6 +111,24 @@
         {
           "type": "paragraph",
           "content": "Always Save after changes to display images properly."
+        },
+        {
+          "label": "Container Size Desktop",
+          "type": "range",
+          "id": "max-width",
+          "min": 70,
+          "max": 100,
+          "step": 5,
+          "default": 100
+        },
+        {
+          "label": "Container Size Mobile",
+          "type": "range",
+          "id": "max-width-mobile",
+          "min": 70,
+          "max": 100,
+          "step": 5,
+          "default": 100
         },
         {
           "label": "Elements per row Desktop",
@@ -86,15 +166,6 @@
           "max": 4,
           "step": 0.5,
           "default": 2
-        },
-        {
-          "label": "Grid Container Horizontal Padding",
-          "type": "range",
-          "id": "grid-px",
-          "min": 0,
-          "max": 100,
-          "step": 1,
-          "default": 0
         },
         {
           "label": "Grid Container Margin Bottom",
@@ -194,13 +265,21 @@
           "label": "Product"
         },
         {
+          "type": "checkbox",
+          "id": "text_absolute",
+          "label": "Text inside image",
+          "info": "If you want the text to be under the image leave this unchecked",
+          "default": false
+        },
+        {
           "label": "Text Vertical Align",
           "type": "range",
+          "info": "Will only work if 'Text inside image' is checked",
           "id": "text_top",
           "min": 0,
           "max": 100,
           "step": 1,
-          "default": 100
+          "default": 50
         },
         {
           "type": "checkbox",
@@ -264,13 +343,21 @@
           "default": true
         },
         {
+          "type": "checkbox",
+          "id": "text_absolute",
+          "label": "Text inside image",
+          "info": "If you want the text to be under the image leave this unchecked",
+          "default": false
+        },
+        {
           "label": "Text Vertical Align",
           "type": "range",
+          "info": "Will only work if 'Text inside image' is checked",
           "id": "text_top",
           "min": 0,
           "max": 100,
           "step": 1,
-          "default": 100
+          "default": 50
         },
         {
           "type": "checkbox",
@@ -333,13 +420,21 @@
         "label": "Text (optional)"
         },
         {
+          "type": "checkbox",
+          "id": "text_absolute",
+          "label": "Text inside image",
+          "info": "If you want the text to be under the image leave this unchecked",
+          "default": false
+        },
+        {
           "label": "Text Vertical Align",
           "type": "range",
+          "info": "Will only work if 'Text inside image' is checked",
           "id": "text_top",
           "min": 0,
           "max": 100,
           "step": 1,
-          "default": 100
+          "default": 50
         },
         {
           "type": "checkbox",

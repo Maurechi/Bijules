@@ -36,22 +36,44 @@
 
     $('.stl-5-right--slider').slick({
       dots: true,
-      infinite: false,
-      speed: 300,
+      infinite: true,
+      speed: 1000,
+      fade: true ,
       arrows: false,
       slidesToShow: 1,
       slidesToScroll: 1,
       customPaging : function(slider, i) {
         return '<span></span>';
-      }
+      },
+      responsive: [
+        {
+          breakpoint: 991,
+          settings: {
+            fade: true
+          }
+        },
+        {
+          breakpoint: 767,
+          settings: {
+            fade: true
+          }
+        },
+        {
+          breakpoint: 480,
+          settings: {
+            autoplay: false,
+            fade: false
+          }
+        }
+      ]
     });
     var $scale,$transform,i,e,n,s,a,o,r,l;
-    $('.stl-5-dot').click(function(){
+    $('.stl-5-dot').mouseenter(function(){
       var $index = $(this).data('index');
       $('.stl-5-right--slider').slick('slickGoTo',$index);
       $('.stl-5-dot').removeClass('stl-5-dot--active');
       $(this).addClass('stl-5-dot--active');
-      if($(window).width() <= 991){
+      if($(window).width() <= 480){
         if(!$('.stl-5-wrapper').hasClass('zoomed-in')){
           $scale = 1+($('.stl-5-left').width()/$(window).width());
           $('html,body').addClass('no-scroll');
@@ -101,17 +123,20 @@
   }
   
   .index--shop-the-look {
-    margin: {{ section.settings.section-margin }}px 0;
   }
   
   .stl-5-wrapper {
-    max-width: 880px;
+    width: {{section.settings.max-width}}%;
     margin: 0 auto;
     display: flex;
     flex-wrap: wrap;    
-    margin-top: 50px;
     justify-content: space-between;
     align-items: center;
+  }
+  @media (max-width: 480px) {
+    .stl-4-wrapper {
+      width: {{section.settings.max-width-mobile}}%;
+    }
   }
   .index--shop-the-look .top-title {
     text-align: center;
@@ -129,7 +154,6 @@
     width: 50%;
   }
   .stl-5-left {
-    padding: 0 10px;
     transition: all .3s ease;
   }
   .stl-5-item {
@@ -155,7 +179,7 @@
   .stl-5-item .title {
     font-weight: normal;
     margin: 10px 0;
-    font-size: 15px;
+    font-size: 23px;
   }
 
   .stl-5-item .price {
@@ -166,7 +190,6 @@
     margin: 0 auto;
     margin-top: 20px;
     display: inline-block;
-    border: 1px solid black;
     padding: 0.2rem 2rem;
 }
   .stl-5-btn-active {
@@ -230,8 +253,8 @@
   }
 
   .stl-5-left .stl-5-dot {
+    display:inline-block;
     position: absolute;
-    display: inline-block;
     width: 16px;
     height: 16px;
     margin: -8px 0 0 -8px;
@@ -240,11 +263,12 @@
     box-shadow: 0 1px 10px rgba(0,0,0,0.25);
     cursor: pointer;
     z-index: 1;
-    transform: scale(1);
+    transform: scale(0.5);
     transition: transform 0.25s ease-in-out;
   }
+  
   .stl-5-left .stl-5-dot.stl-5-dot--active,.stl-5-left .stl-5-dot:hover  {
-    transform: scale(1.5);
+    transform: scale(0.7);
   }
   .stl-5-left .stl-5-dot::after {
     position: absolute;
@@ -260,7 +284,7 @@
   }
   .stl-5-img img {
     margin: auto;
-    max-height: 350px;
+    max-height: 300px;
     object-fit: contain;
   }
   .stl-5-mobile-btns {
@@ -272,7 +296,10 @@
   .no-scroll {
     overflow: hidden !important;
   }
-  @media(max-width: 991px){
+  @media(max-width: 480px){
+    .stl-5-left .stl-5-dot {
+      display: inline-block;
+    }
     .stl-5-right--inner {
       opacity: 0;
       visibility: hidden;
@@ -314,7 +341,7 @@
     .stl-5-mobile-btns a {
     }
     .stl-5-wrapper {
-      padding: 0 20px;
+      padding: 0;
       justify-content: center;
     }
     .stl-5-right-header {
@@ -347,19 +374,7 @@
       display: none;
     }
   }
-  @media(max-width: 767px){
-    .index--shop-the-look .subtitle {
-      font-size: 35px;
-    }
-    .stl-5-right-header .subtitle {
-      font-size: 16px;
-    }
-    
-    .stl-5-img img {
-    	max-height: 200px;
-      object-fit: contain;
-    }
-  }
+  
   
   .slick-dots {
     position: absolute;
@@ -377,79 +392,91 @@
     margin: 10px !important;
 }
 </style>
+{% capture stl_image %}
+<div class="stl-5-left">
+  <div class="stl-5-left--inner">
+    {% if section.settings.image != blank %}
+      {%- liquid 
+        assign image_alt_1 = section.settings.image.alt
+        assign  image_url_small_1 = section.settings.image | img_url: '60x'
+        assign  image_url_210_1 = section.settings.image | img_url: '210x'
+        assign  image_url_420_1 = section.settings.image | img_url: '420x'
+        assign  image_url_730_1 = section.settings.image | img_url: '730x'
+        assign  image_url_1270_1 = section.settings.image | img_url: '1270x'
+        assign  image_url_1650_1 = section.settings.image | img_url: '1650x'
+        assign  image_url_2000_1 = section.settings.image | img_url: '2000x'
+        -%}
+        <img loading="lazy"  src="{{ image_url_small_1 }}"
+          data-srcset="{{ image_url_210_1 }} 210w, {{ image_url_420_1 }} 420w, {{ image_url_730_1 }} 730w  {{ image_url_1270_1 }} 1270w, {{ image_url_1650_1 }} 1650w,  {{ image_url_2000_1 }} 2000w"
+          data-sizes="auto"  alt="{{ image_alt_1 }}"
+          class="lazyload"
+          />
+    {% endif %}
+    {% for block in section.blocks %}
+    {% if block.settings.product != blank %}
+    <span class="stl-5-dot {% if forloop.first %}stl-5-dot--active{% endif %}" data-index="{{ forloop.index0 }}" style="top:{{ block.settings.top }}%;left:{{ block.settings.left }}%;"></span>
+    {% endif %}
+    {% endfor %}
+    </div>
+  </div>
+{% endcapture %}
 
-<div class="index--shop-the-look">
-  {% if section.settings.title != blank %}<h4 class="top-title">{{ section.settings.title }}</h4>{% endif %}
-  {% if section.settings.subtitle != blank %}<h3 class="subtitle">{{ section.settings.subtitle }}</h3>{% endif %}
-  <div class="stl-5-wrapper">
-    <div class="stl-5-left">
-      <div class="stl-5-left--inner">
-        {% if section.settings.image != blank %}
-          {%- liquid 
-            assign image_alt_1 = section.settings.image.alt
-            assign  image_url_small_1 = section.settings.image | img_url: '60x'
-            assign  image_url_210_1 = section.settings.image | img_url: '210x'
-            assign  image_url_420_1 = section.settings.image | img_url: '420x'
-            assign  image_url_730_1 = section.settings.image | img_url: '730x'
-            assign  image_url_1270_1 = section.settings.image | img_url: '1270x'
-            assign  image_url_1650_1 = section.settings.image | img_url: '1650x'
-            assign  image_url_2000_1 = section.settings.image | img_url: '2000x'
-            -%}
-            <img loading="lazy"  src="{{ image_url_small_1 }}"
-              data-srcset="{{ image_url_210_1 }} 210w, {{ image_url_420_1 }} 420w, {{ image_url_730_1 }} 730w  {{ image_url_1270_1 }} 1270w, {{ image_url_1650_1 }} 1650w,  {{ image_url_2000_1 }} 2000w"
-              data-sizes="auto"  alt="{{ image_alt_1 }}"
-              class="lazyload"
-              />
-        {% endif %}
+{% capture stl_products %}
+  <div class="stl-5-right">
+    <div class="stl-5-right--inner">
+      <div class="stl-5-right-header">
+        <span>
+          <svg class="Icon Icon--close" role="presentation" viewBox="0 0 16 14">
+            <path d="M15 0L1 14m14 0L1 0" stroke="currentColor" fill="none" fill-rule="evenodd"></path>
+          </svg>
+        </span>
+        {% if section.settings.subtitle != blank %}<h3 class="subtitle">{{ section.settings.subtitle }}</h3>{% endif %}
+      </div>
+      <div class="stl-5-right--slider">
         {% for block in section.blocks %}
         {% if block.settings.product != blank %}
-        <span class="stl-5-dot {% if forloop.first %}stl-5-dot--active{% endif %}" data-index="{{ forloop.index0 }}" style="top:{{ block.settings.top }}%;left:{{ block.settings.left }}%;"></span>
+          {%- liquid
+            assign thisProduct = all_products[block.settings.product]
+            assign image_alt = thisProduct.alt
+            assign  image_url_small = thisProduct | img_url: '60x'
+            assign  image_url_210 = thisProduct | img_url: '210x'
+            assign  image_url_420 = thisProduct | img_url: '420x'
+            assign  image_url_730 = thisProduct | img_url: '730x'
+            -%}
+        <div class="stl-5-item">
+          <a href="{{ thisProduct.url }}">
+          <div class="stl-5-img">
+            <img loading="lazy"  src="{{ image_url_small }}"
+            data-srcset="{{ image_url_210 }} 210w, {{ image_url_420 }} 420w, {{ image_url_730 }} 730w"
+            data-sizes="auto"  alt="{{ image_alt }}"
+            class="lazyload"
+            />
+          </div>
+          <h4 class="title">{{ thisProduct.title }}</h4>
+          {% comment %} <h5 class="price">{{ thisProduct.price | money }}</h5> {% endcomment %}
+          </a>
+          <a class="stl-5-btn" href="{{ thisProduct.url }}" class="{% if section.settings.button-class %}{{ section.settings.button-class }}{% endif %}">{{ section.settings.cta_text }}</a>
+        </div>
         {% endif %}
         {% endfor %}
       </div>
     </div>
-    <div class="stl-5-right">
-      <div class="stl-5-right--inner">
-        <div class="stl-5-right-header">
-          <span>
-            <svg class="Icon Icon--close" role="presentation" viewBox="0 0 16 14">
-              <path d="M15 0L1 14m14 0L1 0" stroke="currentColor" fill="none" fill-rule="evenodd"></path>
-            </svg>
-          </span>
-          {% if section.settings.subtitle != blank %}<h3 class="subtitle">{{ section.settings.subtitle }}</h3>{% endif %}
-        </div>
-        <div class="stl-5-right--slider">
-          {% for block in section.blocks %}
-          {% if block.settings.product != blank %}
-          {%- liquid
-              assign thisProduct = all_products[block.settings.product]
-              assign image_alt = thisProduct.alt
-              assign  image_url_small = thisProduct | img_url: '60x'
-              assign  image_url_210 = thisProduct | img_url: '210x'
-              assign  image_url_420 = thisProduct | img_url: '420x'
-              assign  image_url_730 = thisProduct | img_url: '730x'
-              -%}
-          <div class="stl-5-item">
-            <a href="{{ thisProduct.url }}">
-            <div class="stl-5-img">
-               <img loading="lazy"  src="{{ image_url_small }}"
-              data-srcset="{{ image_url_210 }} 210w, {{ image_url_420 }} 420w, {{ image_url_730 }} 730w"
-              data-sizes="auto"  alt="{{ image_alt }}"
-              class="lazyload"
-              />
-            </div>
-            <h4 class="title">{{ thisProduct.title }}</h4>
-            <h5 class="price">{{ thisProduct.price | money }}</h5>
-            </a>
-            <a class="stl-5-btn" href="{{ thisProduct.url }}" class="{% if section.settings.button-class %}{{ section.settings.button-class }}{% endif %}">{{ section.settings.cta_text }}</a>
-          </div>
-          {% endif %}
-          {% endfor %}
-        </div>
-      </div>
-      <div class="stl-5-btn stl-5-mobile-btns">
-        <a href="javascript:void(0);" onclick="$('.stl-5-dot--active').trigger('click')" data-index="{{ forloop.index0 }}" {% if forloop.first %}style="display:block;"{% endif %} class="{% if section.settings.button-class %}{{ section.settings.button-class }}{% endif %}">{{ section.settings.cta_text_mobile }}</a>
-      </div>
+    <div class="stl-5-btn stl-5-mobile-btns">
+      <a href="javascript:void(0);" onclick="$('.stl-5-dot--active').trigger('click')" data-index="{{ forloop.index0 }}" {% if forloop.first %}style="display:block;"{% endif %} class="{% if section.settings.button-class %}{{ section.settings.button-class }}{% endif %}">{{ section.settings.cta_text_mobile }}</a>
     </div>
+  </div>
+{% endcapture %}
+
+<div class="index--shop-the-look mobile-{{section.settings.mobile-margin}}" style="padding: {{ section.settings.section-margin-top }}px 0px {{section.settings.section-margin-bottom}}px 0px;">
+  {% if section.settings.title != blank %}<h4 class="top-title">{{ section.settings.title }}</h4>{% endif %}
+  {% if section.settings.subtitle != blank %}<h3 class="subtitle">{{ section.settings.subtitle }}</h3>{% endif %}
+  <div class="stl-5-wrapper">
+      {% if section.settings.img_side == 'left' %}
+     	 {{ stl_image }}
+     	 {{ stl_products }}
+      {% else %}
+      {{ stl_products }}
+      {{ stl_image }}
+      {% endif %}
   </div>  
 </div>

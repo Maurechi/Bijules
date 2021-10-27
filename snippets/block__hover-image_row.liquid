@@ -15,7 +15,6 @@
   opacity: 0
 }
 .title_wrapper {
-  position: absolute;
   width: 100%;
   z-index: 20;
 }
@@ -40,6 +39,7 @@
   assign horizontal_align = block.settings.text_horizontal_align
   assign color = block.settings.text_color
   assign text = block.settings.image_text
+  assign absolute = block.settings.text_absolute
 
   assign image_alt = block.settings.image.alt
   assign  image_url_small = block.settings.image | img_url: '60x'
@@ -79,7 +79,7 @@
         {% endif %}
         {% if text != blank %}
           <div class="section_align">
-            <div class="title_wrapper" style="top: {{ top }}%; {% if custom_align %}text-align: {{ horizontal_align }} {% endif %}">
+            <div class="title_wrapper" style="{% if absolute and top != blank %}position: absolute; top: {{top}}% {% endif %} ; {% if custom_align %}text-align: {{ horizontal_align }} {% endif %}">
               <h3 style="color: {{ color }}; padding: {{ pt }}rem {{ px }}rem 0rem {{ px }}rem !important;">{{ text }}</h3>
             </div>
           </div>

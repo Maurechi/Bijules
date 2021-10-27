@@ -1,3 +1,28 @@
+{% style %}
+
+.mega-nav-img {
+  object-fit: cover;
+  object-position: top;
+}
+
+@media (max-width: 1350px) {
+  .img-4 {
+    height: 30vw; 
+  }
+  .img-5 {
+    height: 30vw; 
+  }
+}
+@media (min-width: 1350px) {
+  .img-4 {
+    height: 35vw; 
+  }
+  .img-5 {
+    height: 30vw; 
+  }
+}
+{% endstyle %}
+
 {% assign base_menu_handle = settings.navigation_menu | default: 'main-menu' %}
 {% assign horizontal_nav_linklist = linklists[base_menu_handle] %}
 {% assign mega_nav_name = settings.navigation_horizontal_mega_nav | downcase %}

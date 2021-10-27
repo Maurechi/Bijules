@@ -4,8 +4,6 @@
 {% if section.settings.wrapper == true %}
 <div class="section-wrapper flex-width-{{ section.settings.section-wrapper-size }} clearfix">
   {% endif %}
-  <div class="{{ section.settings.gutter }}">
-    <div class="{{ block_width }}">
       <div class="section-wrapper-headline{% if section.settings.clearfix == true %} clearfix{% endif %}{% if section.settings.lesspadding == true %} lesspadding{% endif %}">
 
         <section 
@@ -39,9 +37,6 @@
             </div>
           </div>
         </section>
-
-      </div>
-    </div>
   </div>
   {% if section.settings.wrapper == true %}
 </div>

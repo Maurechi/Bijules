@@ -1,7 +1,6 @@
 
 {%- style -%}
 .title_wrapper {
-  position: absolute;
   width: 100%;
 }
 .collection__link{ 
@@ -30,6 +29,7 @@
   assign top = block.settings.text_top
   assign horizontal_align = block.settings.text_horizontal_align
   assign color = block.settings.text_color
+  assign absolute = block.settings.text_absolute
 
   if collection.image
     assign collection_image = collection.image
@@ -58,7 +58,7 @@
               />
     {% if block.settings.show_info %}
       <div class="section_align">
-        <div class="title_wrapper" style="top: {{top}}% ;{% if custom_align %}text-align: {{ horizontal_align }} {% endif %}">
+        <div class="title_wrapper" style="{% if absolute and top != blank %}position: absolute; top: {{top}}% {% endif %} ;{% if custom_align %}text-align: {{ horizontal_align }} {% endif %}">
           <h3 style="color: {{ color }}; padding: {{ pt }}rem {{ px }}rem 0rem {{ px }}rem !important;" >{{ text }}</h3>
         </div>
       </div>

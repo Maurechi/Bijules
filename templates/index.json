@@ -1,26 +1,417 @@
 {
   "sections": {
-    "163230182994ccba66": {
-      "type": "home_featured_text",
+    "16341174169727a16e": {
+      "type": "home_image-teaser-row",
       "blocks": {
-        "163230182994ccba66-0": {
-          "type": "richtext",
+        "4d163bc6-6a42-4a06-b025-2b9dd237094b": {
+          "type": "Image-Block",
           "settings": {
-            "content": "<p>Add your own custom content to give more information about your store, availability details...<\/p>"
+            "width": "100%",
+            "image": "shopify:\/\/shop_images\/CardiB_ID_1_1650x_f8d6c8a0-23cd-45d7-a358-e6aa940aa235.jpg",
+            "teaser_link": "shopify:\/\/collections\/icons",
+            "desktop-one-two-cta": false,
+            "teaser_link-two": "",
+            "image-mobile": "shopify:\/\/shop_images\/244463518_192449173000121_321512559777878770_n_875da10f-5727-4970-86b9-62e0ff4e9af2.jpg",
+            "teaser_link-mobile": "",
+            "teaser-image-text-mobile": "",
+            "mobile-one-two-cta": false,
+            "background-color": "#ffffff",
+            "block-border-width": 0,
+            "block-border-color": "#ffffff",
+            "centered-layout": false,
+            "jsrenderheight": false,
+            "jsrenderheight-mobile": false,
+            "boss": true,
+            "mobile-two": false,
+            "inner__width": 100,
+            "innner_alignment": "left",
+            "margin_top": 0,
+            "margin_left": 0,
+            "cta-text-font-size": 15,
+            "teaser-image-text": "",
+            "link-style": "button",
+            "link-text-color": "#333333",
+            "button-color": "#ffffff",
+            "teaser-image-text-two": "",
+            "link-style-two": "button",
+            "link-text-color-two": "#333333",
+            "button-color-two": "#ffffff",
+            "button-position": true,
+            "text-alignment": "bottom-center",
+            "image-teaser-text": "<p>Discover the new Icons collection<\/p>",
+            "image-teaser-text-2": "",
+            "teaser-text-width": 100,
+            "link-text-placement": "bottom-center",
+            "image-text-font-size": 30,
+            "image-text-mobile-font-size": "middle",
+            "font-weight": "700",
+            "text-background-color": "rgba(0,0,0,0)",
+            "text_color": "#ffffff",
+            "teaser-text-padding": 0,
+            "teaser-text-padding-h": 15,
+            "text-position": false,
+            "mobile-text-position": true,
+            "header_size": "1"
           }
         }
       },
       "block_order": [
-        "163230182994ccba66-0"
+        "4d163bc6-6a42-4a06-b025-2b9dd237094b"
       ],
       "settings": {
-        "title": "Your title",
-        "use_secondary_background": false,
-        "content_position": "center"
+        "wrapper": true,
+        "section-wrapper-size": 95,
+        "gutter": "no-padding",
+        "section-margin-bottom": 0
+      }
+    },
+    "163473971968b5d4e9": {
+      "type": "home_featured_headline",
+      "settings": {
+        "wrapper": true,
+        "section-wrapper-size": 100,
+        "width": "100%",
+        "gutter": "no-padding",
+        "clearfix": false,
+        "lesspadding": false,
+        "boss": true,
+        "title": "<p>One of a Kind<\/p>",
+        "underline": false,
+        "url": "",
+        "font_size": 14,
+        "font_weight": "500",
+        "font_size_mobile": "middle",
+        "header_size": "2",
+        "content_position": "center",
+        "color": "#000000",
+        "background_color": "#ffffff",
+        "margin_top": 0,
+        "margin_bottom": 0
+      }
+    },
+    "1634128912e8e1dc22": {
+      "type": "image-and-text",
+      "blocks": {
+        "83eef4c6-79ce-4ba8-8524-450674edbd1f": {
+          "type": "product",
+          "settings": {
+            "product": "cigar-smoker",
+            "text_top": 100,
+            "custom_align": false,
+            "text_horizontal_align": "center",
+            "text_color": "#000000",
+            "show_info": true
+          }
+        },
+        "fea30e0c-266b-40de-933d-597beb037996": {
+          "type": "product",
+          "disabled": true,
+          "settings": {
+            "product": "smoking-cigarillo-cuff-pendant",
+            "text_top": 100,
+            "custom_align": false,
+            "text_horizontal_align": "center",
+            "text_color": "#000000",
+            "show_info": true
+          }
+        }
+      },
+      "block_order": [
+        "83eef4c6-79ce-4ba8-8524-450674edbd1f",
+        "fea30e0c-266b-40de-933d-597beb037996"
+      ],
+      "settings": {
+        "max-width": 70,
+        "max-width-mobile": 100,
+        "background-color": "#ffffff",
+        "layout": "right",
+        "image": "shopify:\/\/shop_images\/67A5376-final_720x_93cd8ad1-9e80-4a26-8509-c73d1ca2e922.jpg",
+        "img-left": 7.5,
+        "img-top": 3,
+        "img_text": "Shop Harmonia",
+        "btn-top": 90,
+        "btn-align": "center",
+        "button_link": "shopify:\/\/collections\/marijules",
+        "margin__top": 0,
+        "margin__bottom": 0,
+        "image-width": "6",
+        "title": "Harmonia",
+        "text-layout": "center",
+        "text-vertical": "center",
+        "text": "<p>Jewelry pieces which have been tried and true in the aesthetic of Bijules<\/p>",
+        "small_text": "",
+        "button-alignment": "center",
+        "button_label": "Shop Harmonia"
+      }
+    },
+    "1633526570049acae0": {
+      "type": "shop-the-look-3",
+      "blocks": {
+        "a5818266-5a46-4b9f-a6fc-b6ccfe45dfd9": {
+          "type": "product",
+          "settings": {
+            "product": "double-happiness-front",
+            "top": 33,
+            "left": 21
+          }
+        },
+        "f78dede9-f589-48df-9d9e-733427d3b055": {
+          "type": "product",
+          "settings": {
+            "product": "closed-cap-gem-bar",
+            "top": 19,
+            "left": 46
+          }
+        }
+      },
+      "block_order": [
+        "a5818266-5a46-4b9f-a6fc-b6ccfe45dfd9",
+        "f78dede9-f589-48df-9d9e-733427d3b055"
+      ],
+      "settings": {
+        "stl_version": "carousel",
+        "img_side": "left",
+        "title": "",
+        "subtitle": "",
+        "cta_text": "View Product",
+        "cta_text_mobile": "Shop This Look",
+        "image": "shopify:\/\/shop_images\/classic-gold-grillz---laviticus-28553164_1200x-ConvertImage.jpg",
+        "max-width": 75,
+        "section-margin": 10
+      }
+    },
+    "1634130311070d69be": {
+      "type": "image-and-text",
+      "blocks": {
+        "196379a6-a8d7-4f2f-8666-cb2a05fe967f": {
+          "type": "product",
+          "settings": {
+            "product": "baby-median-slit-ring",
+            "text_top": 100,
+            "custom_align": false,
+            "text_horizontal_align": "center",
+            "text_color": "#000000",
+            "show_info": true
+          }
+        }
+      },
+      "block_order": [
+        "196379a6-a8d7-4f2f-8666-cb2a05fe967f"
+      ],
+      "settings": {
+        "max-width": 75,
+        "max-width-mobile": 100,
+        "background-color": "#ffffff",
+        "layout": "right",
+        "image": "shopify:\/\/shop_images\/201908_BIJULES_SIGURN_20_420x_1000x1000_b9997ccf-3add-4a1a-b214-04b3b1b04961.jpg",
+        "img-left": 2.5,
+        "img-top": 2.5,
+        "img_text": "Shop Ritual",
+        "btn-top": 89,
+        "btn-align": "center",
+        "button_link": "shopify:\/\/collections\/atelier",
+        "margin__top": 0,
+        "margin__bottom": 0,
+        "image-width": "6",
+        "title": "Atelier Ritual",
+        "text-layout": "center",
+        "text-vertical": "center",
+        "text": "<p>There are moments in every persons' life that transcend what they had believed before and that redefine life itself.<\/p>",
+        "small_text": "",
+        "button-alignment": "left",
+        "button_label": "Shop Ritual"
+      }
+    },
+    "163351578024f6242e": {
+      "type": "shop-the-look-1",
+      "blocks": {
+        "2c8d14d3-c576-4434-a398-edbb7bc5fb82": {
+          "type": "product",
+          "settings": {
+            "product": "badrool",
+            "top": 58,
+            "left": 37
+          }
+        },
+        "f89eab29-b4b1-4ad3-a744-19901943c811": {
+          "type": "product",
+          "settings": {
+            "product": "beth-and-matt",
+            "top": 38,
+            "left": 59
+          }
+        }
+      },
+      "block_order": [
+        "2c8d14d3-c576-4434-a398-edbb7bc5fb82",
+        "f89eab29-b4b1-4ad3-a744-19901943c811"
+      ],
+      "settings": {
+        "stl_version": "carousel",
+        "img_side": "left",
+        "title": "",
+        "subtitle": "",
+        "cta_text": "View Product",
+        "cta_text_mobile": "Shop This Look",
+        "image": "shopify:\/\/shop_images\/20C531BA-C388-46B8-AC79-8C5DB68B1CFB_720x_68de7d21-cd7b-4d68-86b1-796991445005.jpg",
+        "max-width": 95,
+        "section-margin": 0
+      }
+    },
+    "16335167985110bc85": {
+      "type": "super-grid",
+      "disabled": true,
+      "blocks": {
+        "24a0adee-0d1d-4b16-9e11-9156d5c19e69": {
+          "type": "hover_image",
+          "settings": {
+            "image_link": "",
+            "image": "shopify:\/\/shop_images\/PEARL_EARPOD_web_1650x-ConvertImage.jpg",
+            "image_text": "",
+            "text_absolute": false,
+            "text_top": 100,
+            "custom_align": false,
+            "text_horizontal_align": "center",
+            "text_color": "#000000"
+          }
+        },
+        "e6542bd4-a5d1-4a76-9bbe-831263106cf6": {
+          "type": "product",
+          "settings": {
+            "product": "wireless-fine-jewelry",
+            "text_absolute": false,
+            "text_top": 100,
+            "custom_align": false,
+            "text_horizontal_align": "center",
+            "text_color": "#000000",
+            "show_info": true
+          }
+        },
+        "15c6847a-8a3c-432f-a2f3-ea117b03d589": {
+          "type": "hover_image",
+          "disabled": true,
+          "settings": {
+            "image_link": "",
+            "image": "shopify:\/\/shop_images\/Photo_Feb_17_12_30_07_590x_b0c850ab-f868-422d-ba31-05fe9878212f.jpg",
+            "image_text": "",
+            "text_absolute": false,
+            "text_top": 100,
+            "custom_align": false,
+            "text_horizontal_align": "center",
+            "text_color": "#000000"
+          }
+        }
+      },
+      "block_order": [
+        "24a0adee-0d1d-4b16-9e11-9156d5c19e69",
+        "e6542bd4-a5d1-4a76-9bbe-831263106cf6",
+        "15c6847a-8a3c-432f-a2f3-ea117b03d589"
+      ],
+      "settings": {
+        "max-width": 100,
+        "max-width-mobile": 100,
+        "row_md": 2,
+        "row_sm": 2,
+        "column_gap": 1,
+        "row_gap": 2,
+        "mb": 0,
+        "mt": 0,
+        "font_md": 1,
+        "font_sm": 1,
+        "text_align": "center",
+        "pt": 0,
+        "px": 1,
+        "hide_price": true
+      }
+    },
+    "1633516024673111b2": {
+      "type": "super-grid",
+      "blocks": {
+        "1d3f095f-00aa-481c-be49-fd48459cf311": {
+          "type": "product",
+          "settings": {
+            "product": "detached-articulated-ring-paved",
+            "text_absolute": false,
+            "text_top": 100,
+            "custom_align": false,
+            "text_horizontal_align": "center",
+            "text_color": "#000000",
+            "show_info": false
+          }
+        },
+        "5c3e3cff-9167-467e-8b8a-e2db559e0454": {
+          "type": "hover_image",
+          "settings": {
+            "image_link": "",
+            "image": "shopify:\/\/shop_images\/bi7.jpg",
+            "image_2": "shopify:\/\/shop_images\/ANTR_720x_3926d08c-3808-4b13-b75a-ac201a6924bd.jpg",
+            "image_text": "",
+            "text_absolute": false,
+            "text_top": 100,
+            "custom_align": false,
+            "text_horizontal_align": "center",
+            "text_color": "#000000"
+          }
+        },
+        "f72cf439-c8b8-402a-ac04-6da907586584": {
+          "type": "product",
+          "settings": {
+            "product": "iced-out-like-a-prayer",
+            "text_absolute": false,
+            "text_top": 100,
+            "custom_align": false,
+            "text_horizontal_align": "center",
+            "text_color": "#000000",
+            "show_info": false
+          }
+        },
+        "6449191a-950e-4a1a-acd8-b0d0963861a5": {
+          "type": "hover_image",
+          "settings": {
+            "image_link": "",
+            "image": "shopify:\/\/shop_images\/bi5.jpg",
+            "image_2": "shopify:\/\/shop_images\/CIGAR_SMOKER_HAND_720x_a1c30db8-0a8c-4f28-88d9-fae9993ca884.jpg",
+            "image_text": "",
+            "text_absolute": false,
+            "text_top": 88,
+            "custom_align": false,
+            "text_horizontal_align": "center",
+            "text_color": "#000000"
+          }
+        }
+      },
+      "block_order": [
+        "1d3f095f-00aa-481c-be49-fd48459cf311",
+        "5c3e3cff-9167-467e-8b8a-e2db559e0454",
+        "f72cf439-c8b8-402a-ac04-6da907586584",
+        "6449191a-950e-4a1a-acd8-b0d0963861a5"
+      ],
+      "settings": {
+        "max-width": 100,
+        "max-width-mobile": 100,
+        "row_md": 4,
+        "row_sm": 2,
+        "column_gap": 1,
+        "row_gap": 2,
+        "mb": 0,
+        "mt": 0,
+        "font_md": 1,
+        "font_sm": 1,
+        "text_align": "center",
+        "pt": 0,
+        "px": 1,
+        "hide_price": false
       }
     }
   },
   "order": [
-    "163230182994ccba66"
+    "16341174169727a16e",
+    "163473971968b5d4e9",
+    "1634128912e8e1dc22",
+    "1633526570049acae0",
+    "1634130311070d69be",
+    "163351578024f6242e",
+    "16335167985110bc85",
+    "1633516024673111b2"
   ]
 }

@@ -12,13 +12,33 @@
   "settings": [
     {
            "type": "paragraph",
-           "content": "Preview may break during editing. Hit Save in the Customizer to reload."
+           "content": "Preview may break during editing. Hit Save in the Customizer to reload and wait for the page to finish loading."
         }, 
+        {
+          "type":   "range",
+          "id":     "max-width",
+          "min":       0,
+          "max":       100,
+          "step":      5,
+          "unit":      "%",
+          "label":     "Width Desktop",
+          "default":   100
+      },
+      {
+          "type":   "range",
+          "id":     "max-width-mobile",
+          "min":       0,
+          "max":       100,
+          "step":      5,
+          "unit":      "%",
+          "label":     "Width Mobile",
+          "default":   100
+      },
         {
           "type": "radio",
           "id": "stl_version",
           "label": "Shop the Look type",
-          "info": "Hit Save in the Customizer to reflect changes properly",
+          "info": "Hit Save in the Customizer and wait for page load to reflect changes properly",
           "options": [
             {
               "value": "displayed",
@@ -30,6 +50,22 @@
             }
           ],
           "default": "carousel"
+        },
+        {
+          "type": "radio",
+          "id": "img_side",
+          "label": "Big image side",
+          "options": [
+            {
+              "value": "right",
+              "label": "Right"
+            },
+            {
+              "value": "left",
+              "label": "Left"
+            }
+          ],
+          "default": "left"
         },
         {
           "id": "title",
@@ -58,16 +94,50 @@
           "type": "image_picker",
           "label": "Image"
         },
-    {
-            "type":   "range",
-            "id":     "section-margin",
-            "min":       0,
-            "max":       100,
-            "step":      5,
-            "unit":      "px",
-            "label":     "Section Top/Bottom Margin",
-            "default":   0
-        }
+        {
+          "type":   "range",
+          "id":     "section-margin-top",
+          "min":       0,
+          "max":       100,
+          "step":      5,
+          "unit":      "px",
+          "label":     "Section Top Margin",
+          "default":   0
+      },
+      {
+          "type":   "range",
+          "id":     "section-margin-bottom",
+          "min":       0,
+          "max":       100,
+          "step":      5,
+          "unit":      "px",
+          "label":     "Section Bottom Margin",
+          "default":   0
+      },
+      {
+        "type": "select",
+        "id": "mobile-margin",
+        "label": "Vertical Margin Mobile",
+        "default": "none",
+        "options": [
+          {
+            "value": "none",
+            "label": "None"
+          },
+          {
+            "value": "small",
+            "label": "Small"
+          },
+          {
+            "value": "medium",
+            "label": "Medium"
+          },
+          {
+            "value": "big",
+            "label": "Big"
+          }
+        ]
+      }
 ],
 "blocks": [
     {
