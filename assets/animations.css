@@ -1,0 +1,24 @@
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.fade {
+  animation-name: fadein;
+  animation-duration: 0.5s;
+}
+.longfade {
+  animation-name: fadein;
+  animation-duration: 1.5s;
+}
+
+.small-lift {
+  transition: all 0.05s ease;
+}
+
+.small-lift:hover {
+  transform: translateY(-0.05rem);
+}

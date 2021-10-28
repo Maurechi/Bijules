@@ -33,7 +33,7 @@
     {% comment %} LEVEL 0 {% endcomment %}
     {% for link in horizontal_nav_linklist.links %}
       {% assign index = forloop.index -%}
-      <li class="top-mega-nav-link_mm_li  {% if link.active %}active{% endif %} level-0">
+      <li style="height: 55px" class="top-mega-nav-link_mm_li  {% if link.active %}active{% endif %} level-0">
         <a  class="top-mega-nav-link_mm {% if link.active %}option-active{% endif %} level-0" href="{{ link.url }}"><span>{{ link.title }}</span></a>
         {% comment %} LEVELS 1 & 2 {% endcomment %}
         {% case index %}

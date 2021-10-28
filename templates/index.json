@@ -126,7 +126,7 @@
         "background-color": "#ffffff",
         "layout": "right",
         "image": "shopify:\/\/shop_images\/67A5376-final_720x_93cd8ad1-9e80-4a26-8509-c73d1ca2e922.jpg",
-        "img-left": 7.5,
+        "img-left": 5.5,
         "img-top": 3,
         "img_text": "Shop Harmonia",
         "btn-top": 90,
@@ -169,6 +169,8 @@
         "f78dede9-f589-48df-9d9e-733427d3b055"
       ],
       "settings": {
+        "max-width": 75,
+        "max-width-mobile": 100,
         "stl_version": "carousel",
         "img_side": "left",
         "title": "",
@@ -176,8 +178,9 @@
         "cta_text": "View Product",
         "cta_text_mobile": "Shop This Look",
         "image": "shopify:\/\/shop_images\/classic-gold-grillz---laviticus-28553164_1200x-ConvertImage.jpg",
-        "max-width": 75,
-        "section-margin": 10
+        "section-margin-top": 0,
+        "section-margin-bottom": 0,
+        "mobile-margin": "none"
       }
     },
     "1634130311070d69be": {
@@ -247,6 +250,8 @@
         "f89eab29-b4b1-4ad3-a744-19901943c811"
       ],
       "settings": {
+        "max-width": 80,
+        "max-width-mobile": 100,
         "stl_version": "carousel",
         "img_side": "left",
         "title": "",
@@ -254,8 +259,9 @@
         "cta_text": "View Product",
         "cta_text_mobile": "Shop This Look",
         "image": "shopify:\/\/shop_images\/20C531BA-C388-46B8-AC79-8C5DB68B1CFB_720x_68de7d21-cd7b-4d68-86b1-796991445005.jpg",
-        "max-width": 95,
-        "section-margin": 0
+        "section-margin-top": 10,
+        "section-margin-bottom": 0,
+        "mobile-margin": "none"
       }
     },
     "16335167985110bc85": {

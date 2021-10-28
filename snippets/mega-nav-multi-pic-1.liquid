@@ -1,6 +1,5 @@
 {% comment %} Mega Nav Containing One Picture Per Sub_Link  {% endcomment %}
-<div class="mega-nav-submenu-wrapper" id="mega-menu-oben">
-  <div class="nav-border-top"></div>
+<div class="mega-nav-submenu-wrapper fade" id="mega-menu-oben">
   <div class="mega-nav-catalog-nav-lists-wrapper" >
     {% if horizontal_nav_linklist.handle != '' %} 
     <ul class="top-mega-nav-link-list-mm-multi level-1 mega-nav-catalog-nav-list dis-flex" id="{{ linklists.oben-nav-one.handle }}">
@@ -21,7 +20,7 @@
             <div>
               <a class="top-mega-nav-link_mm {% if link.active %}active{% endif %} level-1" href="{{ sub_link.url }}">
                 <div class="menu-image-teaser-link-wrapper">
-                  <img loading="lazy" class="lazyload {{img_class}} mega-nav-img" src="{{ settings.navlink1_sub1_image | img_url: '500x' }}"/>
+                  <img loading="lazy" class="fade lazyload {{img_class}} mega-nav-img" src="{{ settings.navlink1_sub1_image | img_url: '500x' }}"/>
                 </div>
               </a>
             </div>
@@ -29,7 +28,7 @@
               <div>
                 <a class="top-mega-nav-link_mm {% if link.active %}active{% endif %} level-1" href="{{ sub_link.url }}">
                   <div class="menu-image-teaser-link-wrapper">
-                    <img loading="lazy" class="lazyload {{img_class}} mega-nav-img" src="{{ settings.navlink1_sub2_image | img_url: '500x' }}"/>
+                    <img loading="lazy" class="fade lazyload {{img_class}} mega-nav-img" src="{{ settings.navlink1_sub2_image | img_url: '500x' }}"/>
                   </div>
                 </a>
               </div>
@@ -37,7 +36,7 @@
                 <div>
                   <a class="top-mega-nav-link_mm {% if link.active %}active{% endif %} level-1" href="{{ sub_link.url }}">
                     <div class="menu-image-teaser-link-wrapper">
-                      <img loading="lazy" class="lazyload {{img_class}} mega-nav-img" src="{{ settings.navlink1_sub3_image | img_url: '500x' }}"/>
+                      <img loading="lazy" class="fade lazyload {{img_class}} mega-nav-img" src="{{ settings.navlink1_sub3_image | img_url: '500x' }}"/>
                 </div>
               </a>
             </div>
@@ -45,7 +44,7 @@
               <div>
                 <a class="top-mega-nav-link_mm {% if link.active %}active{% endif %} level-1" href="{{ sub_link.url }}">
                   <div class="menu-image-teaser-link-wrapper">
-                    <img loading="lazy" class="lazyload {{img_class}} mega-nav-img" src="{{ settings.navlink1_sub4_image | img_url: '500x' }}"/>
+                    <img loading="lazy" class="fade lazyload {{img_class}} mega-nav-img" src="{{ settings.navlink1_sub4_image | img_url: '500x' }}"/>
                   </div>
               </a>
             </div>
@@ -53,7 +52,7 @@
             <div>
               <a class="top-mega-nav-link_mm {% if link.active %}active{% endif %} level-1" href="{{ sub_link.url }}">
                 <div class="menu-image-teaser-link-wrapper">
-                  <img loading="lazy" class="lazyload {{img_class}} mega-nav-img" src="{{ settings.navlink1_sub5_image | img_url: '500x' }}"/>
+                  <img loading="lazy" class="fade lazyload {{img_class}} mega-nav-img" src="{{ settings.navlink1_sub5_image | img_url: '500x' }}"/>
                 </div>
               </a>
             </div>
